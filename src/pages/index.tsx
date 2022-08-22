@@ -1,15 +1,19 @@
-import type { NextPage } from 'next';
+import { NextPage } from 'next';
 import Head from 'next/head';
+import { ExperienceSection, IntroSection, ProjectSection, ToolStackSection } from '@/components';
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Alan H</title>
+        <title>Alan Habibullah</title>
       </Head>
 
-      <div className="h-screen w-screen flex items-center justify-center">
-        <h1 className="text-4xl">Alan H</h1>
+      <div className="flex flex-col space-y-10 lg:space-y-24">
+        <IntroSection />
+        <ExperienceSection />
+        <ProjectSection />
+        <ToolStackSection />
       </div>
     </>
   );
