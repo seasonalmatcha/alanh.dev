@@ -1,4 +1,4 @@
-import { Navbar } from '@/components';
+import { Footer, Navbar } from '@/components';
 import { FC, ReactNode } from 'react';
 
 export interface IMainLayoutProps {
@@ -14,6 +14,7 @@ export const MainLayout: FC<IMainLayoutProps> = ({ children }) => {
           {children}
         </main>
       </div>
+      <Footer />
     </>
   );
 };
