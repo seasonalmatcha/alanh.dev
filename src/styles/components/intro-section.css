@@ -1,0 +1,16 @@
+.intro-section {
+  @apply flex flex-col lg:flex-row;
+  @apply space-y-8 lg:space-y-0 lg:space-x-16;
+}
+
+.intro-section-avatar {
+  @apply relative w-48 aspect-square rounded-full overflow-hidden;
+}
+
+.intro-section-title {
+  @apply text-3xl font-bold text-neutral-700 dark:text-white;
+}
+
+.intro-section-sub-title {
+  @apply text-lg text-neutral-700 dark:text-white;
+}
