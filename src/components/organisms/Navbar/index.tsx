@@ -1,9 +1,11 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 import { useTheme } from 'next-themes';
 import { BiMenu, BiX } from 'react-icons/bi';
 import { BsCloudMoonFill, BsFillCloudSunFill } from 'react-icons/bs';
+import { AiFillGithub } from 'react-icons/ai';
+import { useRouter } from 'next/router';
 
 const links = [
   {
@@ -28,6 +30,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const mobileMenuRef = useRef<HTMLUListElement>(null);
+  const router = useRouter();
 
   const onToggleMenu = () => {
     setIsOpen((prev) => !prev);
@@ -42,14 +45,32 @@ export const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    const onRouterChange = () => {
+      mobileMenuRef.current!.classList.remove('show');
+      mobileMenuRef.current!.classList.add('hide');
+      setIsOpen(false);
+    };
+
+    router.events.on('routeChangeStart', onRouterChange);
+
+    return () => {
+      router.events.off('routeChangeStart', onRouterChange);
+    };
+  }, [router]);
+
   return (
     <nav className="navbar">
       <div className="mobile-nav-container">
-        <button className="nav-button" onClick={onToggleMenu}>
+        <button
+          className="nav-button"
+          onClick={onToggleMenu}
+          aria-label={`${isOpen ? 'Close' : 'Open'} navigation menu`}
+        >
           {isOpen ? <BiX className="menu-icon" /> : <BiMenu className="menu-icon" />}
         </button>
 
-        <ul ref={mobileMenuRef} className={classNames('mobile-nav-links')}>
+        <ul ref={mobileMenuRef} className={classNames('mobile-nav-links')} aria-hidden={!isOpen}>
           {links.map(({ href, label }, i) => (
             <li
               key={label}
@@ -68,20 +89,32 @@ export const Navbar = () => {
 
       <ul className="nav-links">
         {links.map(({ href, label }) => (
-          <li key={label} className="nav-link">
+          <li key={label} className="link-secondary text-lg">
             <Link href={href} passHref>
               <a>{label}</a>
             </Link>
           </li>
         ))}
+        <li className="link-secondary text-lg">
+          <a
+            href="https://github.com/seasonalmatcha/alanh.dev"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center space-x-2"
+          >
+            <AiFillGithub aria-hidden className="w-6 h-6" />
+            <span>Source</span>
+          </a>
+        </li>
       </ul>
 
       <button
         className="nav-button nav-theme-button"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        aria-label={`Set theme ${theme === 'light' ? 'dark' : 'light'}`}
       >
-        <BsCloudMoonFill className="nav-theme-icon moon" />
-        <BsFillCloudSunFill className="nav-theme-icon sun" />
+        <BsCloudMoonFill aria-hidden className="nav-theme-icon moon" />
+        <BsFillCloudSunFill aria-hidden className="nav-theme-icon sun" />
       </button>
     </nav>
   );
