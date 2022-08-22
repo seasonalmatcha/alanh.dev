@@ -1,0 +1,9 @@
+.project-card-thumbnail {
+  @apply flex flex-col w-fit space-y-4;
+}
+
+.project-card-thumbnail-image {
+  @apply relative w-48 h-28;
+  @apply bg-gray-200 dark:bg-gray-600;
+  @apply rounded-lg overflow-hidden;
+}
