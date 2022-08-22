@@ -14,15 +14,15 @@ const links = [
   },
   {
     label: 'Snippets',
-    href: '/snippets',
+    href: '/#',
   },
   {
     label: 'Bookmarks',
-    href: '/bookmarks',
+    href: '/#',
   },
   {
     label: 'Blog',
-    href: '/blog',
+    href: '/#',
   },
 ];
 
