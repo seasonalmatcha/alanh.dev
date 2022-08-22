@@ -1,0 +1,12 @@
+.tools-stack-container {
+  @apply grid grid-cols-9 grid-rows-[9];
+  @apply w-[300px] h-[300px];
+  @apply md:w-[400px] md:h-[400px];
+  @apply mx-auto text-neutral-700 dark:text-neutral-300;
+}
+
+.tool-item {
+  @apply w-8 h-8 md:w-10 md:h-10;
+  @apply hover:scale-150;
+  @apply transition-transform duration-300;
+}
