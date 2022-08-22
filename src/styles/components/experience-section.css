@@ -1,0 +1,7 @@
+.experience-list {
+  @apply flex flex-col space-y-4;
+}
+
+.experience-title {
+  @apply font-semibold dark:text-white;
+}
