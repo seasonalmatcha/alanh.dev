@@ -1,7 +1,7 @@
 .btn-outline {
   @apply inline-flex space-x-2;
   @apply px-4 py-2 font-bold;
-  @apply border rounded-full;
+  @apply border rounded-lg;
   @apply transition-colors duration-300;
   @apply text-teal-500 hover:text-teal-100 dark:hover:text-teal-800;
   @apply border-teal-500 hover:bg-teal-500;
