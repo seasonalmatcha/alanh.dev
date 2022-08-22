@@ -60,62 +60,62 @@ export const Navbar = () => {
   }, [router]);
 
   return (
-    <nav className="navbar">
-      <div className="mobile-nav-container">
+    <nav className={classNames('navbar', isOpen ? 'mobile-open' : '')}>
+      <div className="navbar-container">
         <button
-          className="nav-button"
+          className="nav-button md:hidden"
           onClick={onToggleMenu}
           aria-label={`${isOpen ? 'Close' : 'Open'} navigation menu`}
         >
           {isOpen ? <BiX className="menu-icon" /> : <BiMenu className="menu-icon" />}
         </button>
 
-        <ul ref={mobileMenuRef} className={classNames('mobile-nav-links')} aria-hidden={!isOpen}>
-          {links.map(({ href, label }, i) => (
-            <li
-              key={label}
-              className={classNames('mobile-nav-link', isOpen ? 'nav-link-show' : '')}
-              style={{
-                animationDelay: `${isOpen ? i * 50 + 100 : 200 - i * 50}ms`,
-              }}
-            >
+        <ul className="nav-links">
+          {links.map(({ href, label }) => (
+            <li key={label} className="link-secondary text-lg">
               <Link href={href} passHref>
-                <a tabIndex={isOpen ? 0 : -1}>{label}</a>
+                <a>{label}</a>
               </Link>
             </li>
           ))}
+          <li className="link-secondary text-lg">
+            <a
+              href="https://github.com/seasonalmatcha/alanh.dev"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center space-x-2"
+            >
+              <AiFillGithub aria-hidden className="w-6 h-6" />
+              <span>Source</span>
+            </a>
+          </li>
         </ul>
+
+        <button
+          className="nav-button nav-theme-button"
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          aria-label={`Set theme ${theme === 'light' ? 'dark' : 'light'}`}
+        >
+          <BsCloudMoonFill aria-hidden className="nav-theme-icon moon" />
+          <BsFillCloudSunFill aria-hidden className="nav-theme-icon sun" />
+        </button>
       </div>
 
-      <ul className="nav-links">
-        {links.map(({ href, label }) => (
-          <li key={label} className="link-secondary text-lg">
+      <ul ref={mobileMenuRef} className={classNames('mobile-nav-links')} aria-hidden={!isOpen}>
+        {links.map(({ href, label }, i) => (
+          <li
+            key={label}
+            className={classNames('mobile-nav-link', isOpen ? 'nav-link-show' : '')}
+            style={{
+              animationDelay: `${isOpen ? i * 50 + 100 : 200 - i * 50}ms`,
+            }}
+          >
             <Link href={href} passHref>
-              <a>{label}</a>
+              <a tabIndex={isOpen ? 0 : -1}>{label}</a>
             </Link>
           </li>
         ))}
-        <li className="link-secondary text-lg">
-          <a
-            href="https://github.com/seasonalmatcha/alanh.dev"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center space-x-2"
-          >
-            <AiFillGithub aria-hidden className="w-6 h-6" />
-            <span>Source</span>
-          </a>
-        </li>
       </ul>
-
-      <button
-        className="nav-button nav-theme-button"
-        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-        aria-label={`Set theme ${theme === 'light' ? 'dark' : 'light'}`}
-      >
-        <BsCloudMoonFill aria-hidden className="nav-theme-icon moon" />
-        <BsFillCloudSunFill aria-hidden className="nav-theme-icon sun" />
-      </button>
     </nav>
   );
 };

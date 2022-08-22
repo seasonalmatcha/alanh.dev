@@ -1,7 +1,16 @@
 .navbar {
-  @apply flex justify-between md:justify-end md:space-x-8 items-center;
+  @apply relative;
   @apply sticky top-0 z-10;
+  @apply backdrop-blur-lg;
+}
+
+.navbar-container {
+  @apply flex justify-between md:justify-end md:space-x-8 items-center;
   @apply w-full md:max-w-2xl lg:max-w-3xl mx-auto p-4 pt-8;
+}
+
+.mobile-open {
+  @apply backdrop-blur-none;
   @apply bg-neutral-100 dark:bg-neutral-900;
 }
 
@@ -14,8 +23,7 @@
 }
 
 .mobile-nav-links {
-  @apply absolute top-full left-0 w-screen;
-  @apply h-0 mt-4 -ml-4 px-4;
+  @apply absolute top-full left-0 w-full h-0 md:hidden;
   @apply overflow-hidden;
   @apply bg-neutral-100 dark:bg-neutral-900;
 }
@@ -40,7 +48,7 @@
 
 .mobile-nav-link > a {
   @apply border-b;
-  @apply block px-2 py-4;
+  @apply block px-4 py-4;
   @apply hover:bg-gray-400 dark:hover:bg-neutral-700;
   @apply focus:border-gray-300 dark:focus:border-neutral-900;
   @apply transition-colors duration-200;
