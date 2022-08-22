@@ -1,0 +1,10 @@
+.link {
+  @apply text-teal-400 hover:text-teal-500;
+  @apply transition-all duration-300;
+  @apply hover:underline;
+}
+
+.link-secondary {
+  @apply hover:text-teal-400;
+  @apply transition-all duration-300;
+}
