@@ -1,45 +1,11 @@
 import { Commentize, Section, SnippetCard } from '@/components';
-import { ISnippet } from '@/types';
 import { NextPage } from 'next';
 import Head from 'next/head';
-
-const snippets: ISnippet[] = [
-  {
-    excerpt: 'Typescript config file for next js',
-    language: {
-      alias: 'json',
-      logo: 'https://picsum.photos/56',
-      name: 'JSON',
-    },
-    title: 'Next JS tsconfig',
-    slug: 'next-js-ts-config',
-    content: '',
-  },
-  {
-    excerpt: 'Typescript config file for next js',
-    language: {
-      alias: 'json',
-      logo: 'https://picsum.photos/56',
-      name: 'JSON',
-    },
-    title: 'Next JS tsconfig',
-    slug: '#',
-    content: '',
-  },
-  {
-    excerpt: 'Typescript config file for next js',
-    language: {
-      alias: 'json',
-      logo: 'https://picsum.photos/56',
-      name: 'JSON',
-    },
-    title: 'Next JS tsconfig',
-    slug: '#',
-    content: '',
-  },
-];
+import { trpc } from '@/utils/trpc';
 
 const Snippets: NextPage = () => {
+  const { data: snippets } = trpc.useQuery(['snippets.index']);
+
   return (
     <>
       <Head>
@@ -57,8 +23,8 @@ const Snippets: NextPage = () => {
 
         <div className="mt-10 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {snippets.map((snippet, i) => (
-              <SnippetCard key={i} snippet={snippet} />
+            {snippets?.map((snippet, i) => (
+              <SnippetCard key={i} {...snippet} />
             ))}
           </div>
         </div>
