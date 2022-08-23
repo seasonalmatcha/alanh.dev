@@ -57,6 +57,7 @@
 .nav-button {
   @apply flex items-center p-2 rounded-lg;
   @apply transition-all duration-300;
+  @apply hover:ring-2 hover:ring-blue-400;
 }
 
 .nav-theme-button {
