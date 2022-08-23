@@ -1,0 +1,35 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Language {
+  id      String    @id @default(cuid())
+  alias   String
+  name    String
+  logo    String?
+  Snippet Snippet[]
+
+  @@unique([alias, name])
+}
+
+model Snippet {
+  id          String   @id @default(cuid())
+  content     String
+  description String?
+  excerpt     String?
+  logo        String?
+  title       String
+  slug        String
+  languageId  String   @map("language_id")
+  language    Language @relation(fields: [languageId], references: [id], onDelete: SetNull)
+
+  @@unique([slug])
+  @@index([slug])
+}
