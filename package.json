@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
+    "hast-to-hyperscript": "^10.0.1",
     "next": "12.2.5",
     "next-themes": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "refractor": "^4.7.0",
     "zod": "^3.18.0"
   },
   "devDependencies": {
