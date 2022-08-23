@@ -7,9 +7,9 @@ export interface ILanguage {
 export interface ISnippet {
   content: string;
   description?: string;
-  excerpt?: string;
-  language: ILanguage;
-  logo?: string;
+  excerpt?: string | null;
+  language?: ILanguage;
+  logo?: string | null;
   title: string;
   slug: string;
 }

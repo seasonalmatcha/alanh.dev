@@ -2,19 +2,19 @@ import { ISnippet } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export interface ISnippetCardProps {
-  snippet: ISnippet;
-}
+export type ISnippetCardProps = Pick<ISnippet, 'excerpt' | 'logo' | 'slug' | 'title'>;
 
-export const SnippetCard = ({ snippet }: ISnippetCardProps) => {
+export const SnippetCard = ({ slug, title, excerpt, logo }: ISnippetCardProps) => {
   return (
-    <Link href={`/snippets/${snippet.slug}`} passHref>
+    <Link href={`/snippets/${slug}`} passHref>
       <a className="snippet-card group">
-        <div className="snippet-card-logo">
-          <Image alt={snippet.language.name} src={snippet.language.logo} layout="fill" />
-        </div>
-        <h3 className="snippet-card-title">{snippet.title}</h3>
-        <p>{snippet.excerpt}</p>
+        {logo && (
+          <div className="snippet-card-logo">
+            <Image alt="" src={logo} layout="fill" />
+          </div>
+        )}
+        <h3 className="snippet-card-title">{title}</h3>
+        <p>{excerpt}</p>
       </a>
     </Link>
   );
