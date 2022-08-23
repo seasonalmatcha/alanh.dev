@@ -1,0 +1,11 @@
+.snippet-card {
+  @apply flex flex-col space-y-2 border rounded-lg p-4;
+}
+
+.snippet-card-logo {
+  @apply relative w-10 h-10 rounded-full overflow-hidden;
+}
+
+.snippet-card-title {
+  @apply font-bold dark:text-white group-hover:text-teal-400;
+}
