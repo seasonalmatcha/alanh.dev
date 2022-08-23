@@ -13,7 +13,7 @@ const linksGroup: Links[][] = [
       label: 'Home',
     },
     {
-      href: '#',
+      href: '/snippets',
       label: 'Snippets',
     },
     {

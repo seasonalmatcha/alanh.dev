@@ -14,7 +14,7 @@ const links = [
   },
   {
     label: 'Snippets',
-    href: '/#',
+    href: '/snippets',
   },
   {
     label: 'Bookmarks',
