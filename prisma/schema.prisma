@@ -10,11 +10,13 @@ datasource db {
 }
 
 model Language {
-  id       String    @id @default(cuid())
-  alias    String
-  name     String
-  logo     String?
-  snippets Snippet[]
+  id        String    @id @default(cuid())
+  alias     String
+  name      String
+  logo      String?
+  snippets  Snippet[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
 
   @@unique([alias, name])
   @@map("languages")
@@ -30,6 +32,8 @@ model Snippet {
   slug        String
   languageId  String?   @map("language_id")
   language    Language? @relation(fields: [languageId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
 
   @@unique([slug])
   @@index([slug])
