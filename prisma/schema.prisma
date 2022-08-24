@@ -51,3 +51,14 @@ model Project {
 
   @@map("projects")
 }
+
+model Experience {
+  id          String   @id @default(cuid())
+  description String   @db.Text
+  subtitle    String
+  title       String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("experiences")
+}
