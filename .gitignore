@@ -40,3 +40,7 @@ next-env.d.ts
 
 # cache
 .eslintcache
+
+# prisma
+prisma/seed/*
+!prisma/seed/*example*
