@@ -45,6 +45,10 @@ export const Navbar = () => {
     }
   };
 
+  const isCurrentPage = (path: string) => {
+    return router.asPath === path;
+  };
+
   useEffect(() => {
     const onRouterChange = () => {
       mobileMenuRef.current!.classList.remove('show');
@@ -72,9 +76,16 @@ export const Navbar = () => {
 
         <ul className="nav-links">
           {links.map(({ href, label }) => (
-            <li key={label} className="link-secondary text-lg">
+            <li key={label}>
               <Link href={href} passHref>
-                <a>{label}</a>
+                <a
+                  className={classNames(
+                    'link-secondary text-lg',
+                    isCurrentPage(href) ? 'active' : '',
+                  )}
+                >
+                  {label}
+                </a>
               </Link>
             </li>
           ))}

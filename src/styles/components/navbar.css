@@ -93,6 +93,10 @@
   animation: grow 300ms forwards;
 }
 
+.active {
+  @apply text-teal-400;
+}
+
 @keyframes enter {
   from {
     opacity: 0;
