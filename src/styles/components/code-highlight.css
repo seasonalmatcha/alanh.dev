@@ -47,6 +47,17 @@ pre[class*='language-'] {
   hyphens: none;
 }
 
+code[class*='language-']:not([data-language='']):before,
+pre[class*='language-']:not([data-language='']):before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.25em 1em;
+  background-color: #1b1e23;
+  border-bottom-right-radius: 0.3em;
+}
+
 /* Selection */
 code[class*='language-']::-moz-selection,
 pre[class*='language-'] *::-moz-selection {
@@ -66,6 +77,8 @@ pre[class*='language-'] {
   margin: 0.5em 0;
   overflow: auto;
   border-radius: 0.3em;
+  position: relative;
+  padding-top: 2.5em;
 }
 
 /* Inline code */

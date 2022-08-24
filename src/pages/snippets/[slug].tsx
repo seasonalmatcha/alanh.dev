@@ -21,39 +21,42 @@ const SnippetDetail: NextPage = () => {
     return hyper;
   }, []);
 
+  if (isLoading) {
+    return <div>Fetching data ...</div>;
+  }
+
+  if (!snippet) {
+    router.replace('/404');
+    return null;
+  }
+
   return (
     <>
       <Head>
         <title>Snippet - Alan Habibullah</title>
       </Head>
 
-      {isLoading && <div>Fetching data ...</div>}
-
-      {!isLoading && snippet && (
-        <>
-          {snippet.logo && (
-            <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4">
-              <Image alt={snippet.title} src={snippet.logo} layout="fill" />
-            </div>
-          )}
-
-          <XMLize
-            text={<h1 className="text-2xl dark:text-white font-bold">{snippet.title}</h1>}
-            textProps={{
-              className: 'pl-0',
-            }}
-            inLine
-          />
-
-          <Commentize text={snippet.description ?? ''} />
-
-          <div className="text-sm mt-4">
-            <pre className="language-">
-              {renderSnippet(snippet.content, snippet.language?.alias)}
-            </pre>
-          </div>
-        </>
+      {snippet.logo && (
+        <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4">
+          <Image alt={snippet.title} src={snippet.logo} layout="fill" />
+        </div>
       )}
+
+      <XMLize
+        text={<h1 className="text-2xl dark:text-white font-bold">{snippet.title}</h1>}
+        textProps={{
+          className: 'pl-0',
+        }}
+        inLine
+      />
+
+      <Commentize text={snippet.description ?? ''} />
+
+      <div className="text-sm mt-4">
+        <pre className="language-" data-language={snippet.language?.name ?? ''}>
+          {renderSnippet(snippet.content, snippet.language?.alias)}
+        </pre>
+      </div>
     </>
   );
 };
