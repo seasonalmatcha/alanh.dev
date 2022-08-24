@@ -39,3 +39,15 @@ model Snippet {
   @@index([slug])
   @@map("snippets")
 }
+
+model Project {
+  id          String   @id @default(cuid())
+  description String   @db.Text
+  href        String
+  thumbnail   String?
+  title       String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
