@@ -15,3 +15,17 @@ export interface ISnippet {
   title: string;
   slug: string;
 }
+
+export interface IProject {
+  id: string;
+  description: string | string[];
+  href: string;
+  thumbnail?: string | null;
+  title: string;
+}
+
+export interface IExperience {
+  description: string[];
+  title: string;
+  subtitle: string;
+}
