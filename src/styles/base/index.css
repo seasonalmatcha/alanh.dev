@@ -14,3 +14,7 @@ input {
   @apply focus:ring-2 focus:ring-blue-400;
   @apply outline-none;
 }
+
+#__next {
+  @apply min-h-screen flex flex-col;
+}
