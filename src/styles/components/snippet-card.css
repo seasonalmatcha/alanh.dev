@@ -9,3 +9,7 @@
 .snippet-card-title {
   @apply font-bold dark:text-white group-hover:text-teal-400;
 }
+
+.snippet-card-language-logo {
+  @apply ml-auto relative w-5 h-5 rounded-full border overflow-hidden;
+}

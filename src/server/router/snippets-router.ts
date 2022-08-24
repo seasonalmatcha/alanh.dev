@@ -21,6 +21,14 @@ export const snippetsRouter = createRouter()
           logo: true,
           slug: true,
           title: true,
+          language: {
+            select: {
+              id: true,
+              alias: true,
+              logo: true,
+              name: true,
+            },
+          },
         },
       });
     },
