@@ -16,7 +16,7 @@ const SnippetDetail: NextPage = () => {
   ]);
 
   const renderSnippet = useCallback((content: string, language?: string) => {
-    const tree = refractor.highlight(content.replace(/\\n/gm, '\n'), language ?? 'plain');
+    const tree = refractor.highlight(content.replace(/^\\n$/gm, '\n'), language ?? 'plain');
     const hyper = toH(createElement, tree);
     return hyper;
   }, []);
