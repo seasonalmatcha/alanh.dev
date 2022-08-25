@@ -6,6 +6,7 @@ import { MainLayout } from '@/components';
 import { NextPageWithLayout } from './page';
 import { withTRPC } from '@trpc/next';
 import superjson from 'superjson';
+import { AnimatePresence } from 'framer-motion';
 
 interface AppPropsWithLayout extends AppProps {
   Component: NextPageWithLayout;
@@ -16,7 +17,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      {getLayout(<Component {...pageProps} />)}
+      <AnimatePresence>{getLayout(<Component {...pageProps} />)}</AnimatePresence>
     </ThemeProvider>
   );
 };

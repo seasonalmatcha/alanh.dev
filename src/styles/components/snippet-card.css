@@ -1,5 +1,6 @@
 .snippet-card {
   @apply flex flex-col space-y-2 border rounded-lg p-4;
+  @apply dark:bg-neutral-900 bg-neutral-100;
 }
 
 .snippet-card-logo {

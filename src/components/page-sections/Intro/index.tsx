@@ -1,18 +1,38 @@
 import { XMLize } from '@/components';
 import Image from 'next/image';
 import { IoDocumentTextOutline } from 'react-icons/io5';
+import { motion } from 'framer-motion';
 
 export const IntroSection = () => {
   return (
-    <section>
-      <div className="intro-section">
-        <div className="w-fit">
-          <div className="intro-section-avatar">
-            <Image alt="alan" src="/alan.jpg" layout="fill" className="w-full h-full" />
-          </div>
-        </div>
-        <div className="flex flex-col space-y-4">
-          <h1 className="intro-section-title">Alan Habibullah</h1>
+    <section className="intro-section">
+      <div className="w-fit">
+        <motion.div
+          initial={{ scale: 2.5, opacity: 0 }}
+          animate={{
+            scale: 1,
+            opacity: 1,
+            transition: { duration: 0.5 },
+          }}
+          className="intro-section-avatar"
+        >
+          <Image alt="alan" src="/alan.jpg" layout="fill" className="w-full h-full" priority />
+        </motion.div>
+      </div>
+      <div className="flex flex-col space-y-4">
+        <motion.h1
+          initial={{ width: 0 }}
+          animate={{ width: '100%', transition: { duration: 1, delay: 0.5 } }}
+          className="intro-section-title overflow-hidden whitespace-nowrap"
+        >
+          Alan Habibullah
+        </motion.h1>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0, transition: { delay: 0.65 } }}
+          className="flex flex-col space-y-4"
+          onTap={(_, info) => console.log(info)}
+        >
           <div className="flex flex-col space-y-2 rounded-lg p-4 border">
             <XMLize
               text="A passionate frontend engineer based in Jakarta, Indonesia"
@@ -42,7 +62,7 @@ export const IntroSection = () => {
             <IoDocumentTextOutline className="h-6 w-6" />
             <span>My Resume</span>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

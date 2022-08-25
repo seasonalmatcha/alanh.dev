@@ -7,6 +7,6 @@
 
 .tool-item {
   @apply w-8 h-8 md:w-10 md:h-10;
-  @apply hover:scale-150;
+  @apply hover:!scale-150;
   @apply transition-transform duration-300;
 }
