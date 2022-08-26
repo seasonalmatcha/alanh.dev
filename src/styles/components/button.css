@@ -1,5 +1,12 @@
+.btn-primary {
+  @apply inline-flex space-x-2 items-center;
+  @apply px-4 py-1 rounded;
+  @apply bg-teal-400 hover:bg-teal-500;
+  @apply text-white font-semibold text-lg;
+}
+
 .btn-outline {
-  @apply inline-flex space-x-2;
+  @apply inline-flex space-x-2 items-center;
   @apply px-4 py-2 font-bold;
   @apply border rounded-lg;
   @apply transition-colors duration-300;

@@ -1,6 +1,11 @@
 .snippet-card {
   @apply flex flex-col space-y-2 border rounded-lg p-4;
   @apply dark:bg-neutral-900 bg-neutral-100;
+  @apply h-full;
+}
+
+.card-body {
+  @apply h-full flex flex-col space-y-2;
 }
 
 .snippet-card-logo {
@@ -12,5 +17,5 @@
 }
 
 .snippet-card-language-logo {
-  @apply ml-auto relative w-5 h-5 rounded-full border overflow-hidden;
+  @apply ml-auto mt-auto relative w-5 h-5 rounded-full border overflow-hidden;
 }

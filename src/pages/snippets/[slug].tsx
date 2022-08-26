@@ -1,10 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { createElement, useCallback } from 'react';
-import { refractor } from 'refractor';
-import { toH } from 'hast-to-hyperscript';
-import { Commentize, XMLize } from '@/components';
+import { Commentize, MarkdownPreview, XMLize } from '@/components';
 import { motion } from 'framer-motion';
 import { prisma } from '@/server/db/client';
 import { Language, Snippet } from '@prisma/client';
@@ -53,12 +50,6 @@ export const getStaticProps: GetStaticProps<SnippetDetailPageProps> = async ({ p
 };
 
 const SnippetDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ snippet }) => {
-  const renderSnippet = useCallback((content: string, language?: string) => {
-    const tree = refractor.highlight(content.replace(/^\\n$/gm, '\n'), language ?? 'plain');
-    const hyper = toH(createElement, tree);
-    return hyper;
-  }, []);
-
   return (
     <>
       <Head>
@@ -66,7 +57,7 @@ const SnippetDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = 
       </Head>
 
       <motion.div>
-        <motion.div layoutId={`test-snippet-${snippet.title}`}>
+        <motion.div layoutId={`${snippet.id}`}>
           {snippet.logo && (
             <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4">
               <Image alt={snippet.title} src={snippet.logo} layout="fill" />
@@ -83,12 +74,9 @@ const SnippetDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = 
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.5 } }}>
-          <Commentize text={snippet.description ?? ''} />
-
-          <div className="text-sm mt-4">
-            <pre className="language-" data-language={snippet.language?.name ?? ''}>
-              {renderSnippet(snippet.content, snippet.language?.alias)}
-            </pre>
+          {snippet.description && <Commentize text={snippet.description} />}
+          <div className="mt-4">
+            <MarkdownPreview value={snippet.content} />
           </div>
         </motion.div>
       </motion.div>

@@ -78,11 +78,7 @@ const Snippets: NextPage = () => {
           animate="show"
         >
           {snippets?.map((snippet, i) => (
-            <motion.div
-              key={i}
-              variants={stagger.children}
-              layoutId={`test-snippet-${snippet.title}`}
-            >
+            <motion.div key={i} variants={stagger.children} layoutId={`${snippet.id}`}>
               <SnippetCard {...snippet} bounce={i === fetchingIndex} />
             </motion.div>
           ))}

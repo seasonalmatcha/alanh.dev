@@ -33,9 +33,9 @@ export const SnippetCard = ({
   }, [bounce, controls]);
 
   return (
-    <motion.div animate={controls}>
-      <Link href={`/snippets/${slug}`} passHref>
-        <a className="snippet-card group">
+    <Link href={`/snippets/${slug}`} passHref>
+      <motion.a animate={controls} className="snippet-card group">
+        <div className="card-body">
           {logo && (
             <div className="snippet-card-logo">
               <Image alt="" aria-hidden src={logo} layout="fill" />
@@ -43,20 +43,20 @@ export const SnippetCard = ({
           )}
           <h3 className="snippet-card-title">{title}</h3>
           <p>{excerpt}</p>
-          <div className="flex justify-between">
-            {bounce && (
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <AiOutlineLoading3Quarters className="animate-spin" />
-              </motion.span>
-            )}
-            {language && language.logo && (
-              <div className="snippet-card-language-logo">
-                <Image alt={language.name} src={language.logo} layout="fill" />
-              </div>
-            )}
-          </div>
-        </a>
-      </Link>
-    </motion.div>
+        </div>
+        <div className="flex justify-between">
+          {bounce && (
+            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <AiOutlineLoading3Quarters className="animate-spin" />
+            </motion.span>
+          )}
+          {language && language.logo && (
+            <div className="snippet-card-language-logo">
+              <Image alt={language.name} src={language.logo} layout="fill" />
+            </div>
+          )}
+        </div>
+      </motion.a>
+    </Link>
   );
 };

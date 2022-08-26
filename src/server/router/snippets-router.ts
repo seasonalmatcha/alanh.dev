@@ -1,5 +1,6 @@
 import { createRouter } from './context';
 import { z } from 'zod';
+import { newSnippetSchema, updateSnippetSchema } from '@/schemas';
 
 export const snippetsRouter = createRouter()
   .query('index', {
@@ -46,5 +47,19 @@ export const snippetsRouter = createRouter()
           language: true,
         },
       });
+    },
+  })
+  .mutation('create', {
+    input: newSnippetSchema,
+    async resolve({ ctx, input }) {
+      await ctx.prisma.snippet.create({
+        data: input,
+      });
+    },
+  })
+  .mutation('update', {
+    input: updateSnippetSchema,
+    async resolve({ ctx, input }) {
+      await ctx.prisma.snippet.update({ where: { id: input.id }, data: { ...input } });
     },
   });

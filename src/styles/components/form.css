@@ -1,0 +1,22 @@
+input,
+select,
+textarea {
+  @apply rounded !px-3 !py-2;
+  @apply bg-neutral-200 dark:bg-neutral-800;
+  @apply dark:text-neutral-200;
+  @apply placeholder:italic;
+  @apply placeholder:text-gray-400 placeholder:dark:text-neutral-500;
+}
+
+.form-group {
+  @apply flex flex-col space-y-2;
+}
+
+.form-group.required > label:after {
+  content: ' *';
+  @apply text-red-700;
+}
+
+.form-error {
+  @apply text-red-400 text-sm;
+}
