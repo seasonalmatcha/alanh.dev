@@ -1,12 +1,12 @@
 .editor {
   @apply dark:bg-neutral-900 bg-neutral-100 mx-auto w-full;
-  @apply overflow-hidden border;
-  @apply h-[400px] pb-2;
+  @apply overflow-hidden border rounded;
+  @apply h-[400px];
 }
 
 .editor.fullscreen {
   @apply fixed left-0 top-0 right-0 z-50 h-full;
-  width: calc(100vw - 40px);
+  @apply !mt-0 rounded-none;
 }
 
 .editor-toolbar {
@@ -15,7 +15,7 @@
 }
 
 .editor-toolbar-button {
-  @apply rounded p-2 text-neutral-800;
+  @apply rounded p-1 text-neutral-800;
   @apply ring-2 ring-neutral-600;
   @apply hover:ring-neutral-800 focus:ring-neutral-800;
   @apply transition-all duration-200;

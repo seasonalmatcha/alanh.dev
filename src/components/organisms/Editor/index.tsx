@@ -1,5 +1,5 @@
 import { MarkdownPreview } from '@/components';
-import { HTMLProps, useState } from 'react';
+import { HTMLProps, useEffect, useState } from 'react';
 import { FiEye, FiEyeOff, FiMaximize2, FiMinimize2 } from 'react-icons/fi';
 import classNames from 'classnames';
 
@@ -13,13 +13,33 @@ export const Editor = ({ value, onChange: _onChange, textAreaProps }: IEditorPro
   const [showPreview, setShowPreview] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.classList.add('h-screen', 'overflow-hidden');
+    } else {
+      document.body.classList.remove('h-screen', 'overflow-hidden');
+    }
+
+    return () => {
+      document.body.classList.remove('h-screen', 'overflow-hidden');
+    };
+  }, [isFullscreen]);
+
   return (
     <div className={classNames('editor', isFullscreen ? 'fullscreen' : '')}>
       <div className="editor-toolbar">
-        <button onClick={() => setShowPreview((prev) => !prev)} className="editor-toolbar-button">
+        <button
+          type="button"
+          onClick={() => setShowPreview((prev) => !prev)}
+          className="editor-toolbar-button"
+        >
           {showPreview ? <FiEyeOff /> : <FiEye />}
         </button>
-        <button onClick={() => setIsFullscreen((prev) => !prev)} className="editor-toolbar-button">
+        <button
+          type="button"
+          onClick={() => setIsFullscreen((prev) => !prev)}
+          className="editor-toolbar-button"
+        >
           {isFullscreen ? <FiMinimize2 /> : <FiMaximize2 />}
         </button>
       </div>
