@@ -6,6 +6,7 @@ import { BiMenu, BiX } from 'react-icons/bi';
 import { BsCloudMoonFill, BsFillCloudSunFill } from 'react-icons/bs';
 import { AiFillGithub } from 'react-icons/ai';
 import { useRouter } from 'next/router';
+import { signOut, useSession } from 'next-auth/react';
 
 const links = [
   {
@@ -31,6 +32,7 @@ export const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const mobileMenuRef = useRef<HTMLUListElement>(null);
   const router = useRouter();
+  const { status } = useSession();
 
   const onToggleMenu = () => {
     setIsOpen((prev) => !prev);
@@ -96,11 +98,22 @@ export const Navbar = () => {
               rel="noreferrer"
               className="flex items-center space-x-2"
             >
-              <AiFillGithub aria-hidden className="w-6 h-6" />
+              <AiFillGithub aria-hidden className="w-6 h-6 hidden lg:block" />
               <span>Source</span>
             </a>
           </li>
         </ul>
+
+        {status === 'authenticated' && (
+          <div>
+            <button
+              className="link-secondary text-lg hidden md:block"
+              onClick={() => signOut({ callbackUrl: '/' })}
+            >
+              Sign Out
+            </button>
+          </div>
+        )}
 
         <button
           className="nav-button nav-theme-button"
@@ -126,6 +139,16 @@ export const Navbar = () => {
             </Link>
           </li>
         ))}
+        {status === 'authenticated' && (
+          <li className={classNames('mobile-nav-link', isOpen ? 'nav-link-show' : '')}>
+            <button
+              className="link-danger md:hidden p-4 w-full text-left"
+              onClick={() => signOut({ callbackUrl: '/' })}
+            >
+              Sign Out
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );

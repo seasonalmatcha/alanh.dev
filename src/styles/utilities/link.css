@@ -8,3 +8,8 @@
   @apply hover:text-teal-400;
   @apply transition-all duration-300;
 }
+
+.link-danger {
+  @apply hover:text-red-400;
+  @apply transition-all duration-300;
+}
