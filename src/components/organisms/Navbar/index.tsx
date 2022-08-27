@@ -51,8 +51,8 @@ export const Navbar = () => {
 
   useEffect(() => {
     const onRouterChange = () => {
-      mobileMenuRef.current!.classList.remove('show');
-      mobileMenuRef.current!.classList.add('hide');
+      mobileMenuRef.current?.classList.remove('show');
+      mobileMenuRef.current?.classList.add('hide');
       setIsOpen(false);
     };
 

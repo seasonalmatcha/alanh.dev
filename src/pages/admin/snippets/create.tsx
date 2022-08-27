@@ -8,14 +8,8 @@ import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import Link from 'next/link';
 import Head from 'next/head';
 
-/**
- * TODO: change eslint parser to use typescript parser
- */
-/* eslint-disable-next-line */
 enum ActionType {
-  // eslint-disable-next-line no-unused-vars
   UPDATE_VALUE,
-  // eslint-disable-next-line no-unused-vars
   RESET,
 }
 

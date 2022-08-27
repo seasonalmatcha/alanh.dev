@@ -30,8 +30,8 @@ const Snippets: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    const handler = (...args: any[]) => {
-      const path = args[0] as string;
+    const handler = (...args: string[]) => {
+      const path = args[0];
       const index = snippets?.findIndex((s) => s.slug === path.split('/').pop());
       setFetchingIndex(index);
     };
