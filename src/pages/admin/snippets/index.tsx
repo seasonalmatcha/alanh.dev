@@ -6,10 +6,11 @@ import { staggerAnimation } from '@/animations';
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import { FiPaperclip } from 'react-icons/fi';
+import { FiPaperclip, FiTrash2 } from 'react-icons/fi';
 
 const AdminSnippetIndexPage: NextPage = () => {
-  const { data: snippets, isLoading } = trpc.useQuery(['snippets.index']);
+  const { data: snippets, isLoading, refetch } = trpc.useQuery(['snippets.index']);
+  const { mutate: deleteSnippetMutation } = trpc.useMutation(['snippets.delete']);
   const stagger = useMemo(
     () =>
       staggerAnimation({
@@ -17,6 +18,13 @@ const AdminSnippetIndexPage: NextPage = () => {
       }),
     [],
   );
+
+  const deleteSnippet = (id: string) => {
+    return () => {
+      deleteSnippetMutation(id);
+      refetch();
+    };
+  };
 
   return (
     <>
@@ -50,11 +58,16 @@ const AdminSnippetIndexPage: NextPage = () => {
             <Link href={`/snippets/${snippet.slug}`} passHref>
               <a className="link-secondary w-full">{snippet.title}</a>
             </Link>
-            <Link href={`/admin/snippets/edit/${snippet.slug}`} passHref>
-              <a className="flex justify-center items-center border rounded p-2 hover:ring-2">
-                <FiEdit />
-              </a>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link href={`/admin/snippets/edit/${snippet.slug}`} passHref>
+                <a className="btn-action primary">
+                  <FiEdit />
+                </a>
+              </Link>
+              <button className="btn-action danger" onClick={deleteSnippet(snippet.id)}>
+                <FiTrash2 />
+              </button>
+            </div>
           </motion.div>
         ))}
       </motion.div>

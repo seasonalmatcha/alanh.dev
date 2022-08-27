@@ -13,3 +13,19 @@
   @apply text-teal-500 hover:text-teal-100 dark:hover:text-teal-800;
   @apply border-teal-500 hover:bg-teal-500;
 }
+
+.btn-action {
+  @apply flex justify-center items-center p-2;
+  @apply border rounded hover:ring-2;
+  @apply transition-all duration-200;
+}
+
+.btn-action.primary {
+  @apply hover:ring-teal-400 hover:text-teal-400;
+  @apply focus:ring-teal-400 focus:text-teal-400;
+}
+
+.btn-action.danger {
+  @apply hover:ring-red-400 hover:text-red-400;
+  @apply focus:ring-red-400 focus:text-red-400;
+}
