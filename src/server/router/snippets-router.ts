@@ -62,4 +62,10 @@ export const snippetsRouter = createRouter()
     async resolve({ ctx, input }) {
       await ctx.prisma.snippet.update({ where: { id: input.id }, data: { ...input } });
     },
+  })
+  .mutation('delete', {
+    input: z.string(),
+    async resolve({ ctx, input }) {
+      await ctx.prisma.snippet.delete({ where: { id: input } });
+    },
   });
