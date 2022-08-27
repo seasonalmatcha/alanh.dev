@@ -1,11 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "next",
-    "next/core-web-vitals",
-    "eslint:recommended"
-  ],
+  "extends": ["plugin:@typescript-eslint/recommended", "next", "next/core-web-vitals"],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
@@ -14,5 +9,14 @@
       "error",
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["next.config.mjs", "./src/server/db/client.ts"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-var": "off"
+      }
+    }
+  ]
 }

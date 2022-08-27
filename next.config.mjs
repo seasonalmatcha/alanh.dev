@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import { env } from './src/env/server.mjs';
 import { withSuperjson } from 'next-superjson';
 
@@ -16,7 +15,7 @@ export default withSuperjson()(
     reactStrictMode: true,
     swcMinify: true,
     images: {
-      domains: ['picsum.photos', 'res.cloudinary.com'],
+      domains: ['picsum.photos', 'res.cloudinary.com', 'techblog.revivaltv.id'],
     },
   }),
 );

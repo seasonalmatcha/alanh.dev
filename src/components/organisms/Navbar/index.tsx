@@ -23,7 +23,7 @@ const links = [
   },
   {
     label: 'Blog',
-    href: '/#',
+    href: '/blog',
   },
 ];
 

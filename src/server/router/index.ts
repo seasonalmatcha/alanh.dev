@@ -5,6 +5,7 @@ import { protectedSnippetsRouter, snippetsRouter } from './snippets-router';
 import { projectsRouter } from './projects-router';
 import { experiencesRouter } from './experiences-router';
 import { languagesRouter } from './languages-router';
+import { postsRouter, protectedPostsRouter } from './posts-router';
 /**
  * I'll keep it just in case
  */
@@ -16,7 +17,9 @@ export const appRouter = createRouter()
   .merge('protected.snippets.', protectedSnippetsRouter)
   .merge('projects.', projectsRouter)
   .merge('experiences.', experiencesRouter)
-  .merge('languages.', languagesRouter);
+  .merge('languages.', languagesRouter)
+  .merge('posts.', postsRouter)
+  .merge('protected.posts.', protectedPostsRouter);
 // .merge('users', usersRouter);
 
 export type AppRouter = typeof appRouter;
