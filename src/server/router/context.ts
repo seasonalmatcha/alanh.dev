@@ -9,7 +9,7 @@ type CreateContextOptions = {
 };
 
 export const createContextInner = async (opts: CreateContextOptions) => {
-  return { prisma, sesstion: opts.session };
+  return { prisma, session: opts.session };
 };
 
 export const createContext = async (opts: trpcNext.CreateNextContextOptions) => {
