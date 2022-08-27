@@ -1,13 +1,14 @@
-import { Editor } from '@/components';
+import { AuthLayout, Editor } from '@/components';
 import { updateSnippetSchema } from '@/schemas';
 import { trpc } from '@/utils/trpc';
-import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { ChangeEvent, FormEvent, useReducer, useState } from 'react';
 import { inferFormattedError } from 'zod';
 import { prisma } from '@/server/db/client';
 import Link from 'next/link';
 import Head from 'next/head';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
+import { NextPageWithLayout } from '@/pages/page';
 
 enum ActionType {
   UPDATE_VALUE,
@@ -40,7 +41,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 
   const snippet = await prisma.snippet.findUnique({ where: { slug } });
-  console.log(snippet);
 
   if (!snippet) {
     return {
@@ -55,11 +55,11 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-const EditSnippetPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
-  snippet,
-}) => {
+const EditSnippetPage: NextPageWithLayout<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ snippet }) => {
   const { data: languages } = trpc.useQuery(['languages.index']);
-  const { mutate, isLoading, reset, isSuccess } = trpc.useMutation(['snippets.update']);
+  const { mutate, isLoading, reset, isSuccess } = trpc.useMutation(['protected.snippets.update']);
   const [snippetState, dispatch] = useReducer(reducer, { ...snippet });
   const [fieldErrors, setFieldErrors] = useState<
     Partial<inferFormattedError<typeof updateSnippetSchema>>
@@ -219,5 +219,7 @@ const EditSnippetPage: NextPage<InferGetServerSidePropsType<typeof getServerSide
     </>
   );
 };
+
+EditSnippetPage.getLayout = (page) => <AuthLayout>{page}</AuthLayout>;
 
 export default EditSnippetPage;

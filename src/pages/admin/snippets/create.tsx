@@ -1,12 +1,12 @@
-import { Editor } from '@/components';
+import { AuthLayout, Editor } from '@/components';
 import { newSnippetSchema } from '@/schemas';
 import { trpc } from '@/utils/trpc';
-import { NextPage } from 'next';
 import { ChangeEvent, FormEvent, useReducer, useState } from 'react';
 import { inferFormattedError } from 'zod';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import Link from 'next/link';
 import Head from 'next/head';
+import { NextPageWithLayout } from '@/pages/page';
 
 enum ActionType {
   UPDATE_VALUE,
@@ -54,9 +54,9 @@ const reducer = (state: ISnippetForm, action: Action): ISnippetForm => {
   }
 };
 
-const CreateSnippetPage: NextPage = () => {
+const CreateSnippetPage: NextPageWithLayout = () => {
   const { data: languages } = trpc.useQuery(['languages.index']);
-  const { mutate, isLoading, reset, isSuccess } = trpc.useMutation(['snippets.create']);
+  const { mutate, isLoading, reset, isSuccess } = trpc.useMutation(['protected.snippets.create']);
   const [snippetState, dispatch] = useReducer(reducer, { ...initialState });
   const [fieldErrors, setFieldErrors] = useState<
     Partial<inferFormattedError<typeof newSnippetSchema>>
@@ -235,5 +235,7 @@ const CreateSnippetPage: NextPage = () => {
     </>
   );
 };
+
+CreateSnippetPage.getLayout = (page) => <AuthLayout>{page}</AuthLayout>;
 
 export default CreateSnippetPage;

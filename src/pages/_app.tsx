@@ -7,18 +7,25 @@ import { NextPageWithLayout } from './page';
 import { withTRPC } from '@trpc/next';
 import superjson from 'superjson';
 import { AnimatePresence } from 'framer-motion';
+import { SessionProvider } from 'next-auth/react';
+import { Session } from 'next-auth';
 
 interface AppPropsWithLayout extends AppProps {
   Component: NextPageWithLayout;
+  pageProps: AppProps['pageProps'] & {
+    session: Session;
+  };
 }
 
-const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+const MyApp = ({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout || ((page) => <MainLayout>{page}</MainLayout>);
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <AnimatePresence>{getLayout(<Component {...pageProps} />)}</AnimatePresence>
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <ThemeProvider attribute="class" defaultTheme="dark">
+        <AnimatePresence>{getLayout(<Component {...pageProps} />)}</AnimatePresence>
+      </ThemeProvider>
+    </SessionProvider>
   );
 };
 

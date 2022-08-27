@@ -1,6 +1,7 @@
 import { createRouter } from './context';
 import { z } from 'zod';
 import { newSnippetSchema, updateSnippetSchema } from '@/schemas';
+import { createProtectedRouter } from './protected-router';
 
 export const snippetsRouter = createRouter()
   .query('index', {
@@ -48,7 +49,9 @@ export const snippetsRouter = createRouter()
         },
       });
     },
-  })
+  });
+
+export const protectedSnippetsRouter = createProtectedRouter()
   .mutation('create', {
     input: newSnippetSchema,
     async resolve({ ctx, input }) {

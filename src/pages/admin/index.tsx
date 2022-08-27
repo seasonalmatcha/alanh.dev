@@ -1,7 +1,8 @@
-import { NextPage } from 'next';
+import { AuthLayout } from '@/components';
 import Link from 'next/link';
+import { NextPageWithLayout } from '../page';
 
-const AdminIndexPage: NextPage = () => {
+const AdminIndexPage: NextPageWithLayout = () => {
   return (
     <>
       <div className="flex flex-col space-y-2">
@@ -12,5 +13,7 @@ const AdminIndexPage: NextPage = () => {
     </>
   );
 };
+
+AdminIndexPage.getLayout = (page) => <AuthLayout>{page}</AuthLayout>;
 
 export default AdminIndexPage;

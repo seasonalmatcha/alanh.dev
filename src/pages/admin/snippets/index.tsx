@@ -1,5 +1,4 @@
 import { trpc } from '@/utils/trpc';
-import { NextPage } from 'next';
 import Link from 'next/link';
 import { FiEdit } from 'react-icons/fi';
 import { staggerAnimation } from '@/animations';
@@ -7,10 +6,12 @@ import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { FiPaperclip, FiTrash2 } from 'react-icons/fi';
+import { AuthLayout } from '@/components';
+import { NextPageWithLayout } from '@/pages/page';
 
-const AdminSnippetIndexPage: NextPage = () => {
+const AdminSnippetIndexPage: NextPageWithLayout = () => {
   const { data: snippets, isLoading, refetch } = trpc.useQuery(['snippets.index']);
-  const { mutate: deleteSnippetMutation } = trpc.useMutation(['snippets.delete']);
+  const { mutate: deleteSnippetMutation } = trpc.useMutation(['protected.snippets.delete']);
   const stagger = useMemo(
     () =>
       staggerAnimation({
@@ -74,5 +75,7 @@ const AdminSnippetIndexPage: NextPage = () => {
     </>
   );
 };
+
+AdminSnippetIndexPage.getLayout = (page) => <AuthLayout>{page}</AuthLayout>;
 
 export default AdminSnippetIndexPage;
