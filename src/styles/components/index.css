@@ -6,4 +6,9 @@
 @import './project-card';
 @import './project-section';
 @import './section';
+@import './snippet-card';
 @import './tools-section';
+@import './code-highlight';
+@import './editor';
+@import './form';
+@import './prose';

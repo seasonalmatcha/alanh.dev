@@ -1,0 +1,21 @@
+.snippet-card {
+  @apply flex flex-col space-y-2 border rounded-lg p-4;
+  @apply dark:bg-neutral-900 bg-neutral-100;
+  @apply h-full;
+}
+
+.card-body {
+  @apply h-full flex flex-col space-y-2;
+}
+
+.snippet-card-logo {
+  @apply relative w-10 h-10 rounded-full overflow-hidden;
+}
+
+.snippet-card-title {
+  @apply font-bold dark:text-white group-hover:text-teal-400;
+}
+
+.snippet-card-language-logo {
+  @apply ml-auto mt-auto relative w-5 h-5 rounded-full border overflow-hidden;
+}

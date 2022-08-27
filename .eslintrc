@@ -1,9 +1,18 @@
 {
-  "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended"
+  ],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
     "prefer-const": "error",
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ]
   }
 }

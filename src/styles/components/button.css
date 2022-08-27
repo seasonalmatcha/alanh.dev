@@ -1,8 +1,31 @@
+.btn-primary {
+  @apply inline-flex space-x-2 items-center;
+  @apply px-4 py-1 rounded;
+  @apply bg-teal-400 hover:bg-teal-500;
+  @apply text-white font-semibold text-lg;
+}
+
 .btn-outline {
-  @apply inline-flex space-x-2;
+  @apply inline-flex space-x-2 items-center;
   @apply px-4 py-2 font-bold;
   @apply border rounded-lg;
   @apply transition-colors duration-300;
   @apply text-teal-500 hover:text-teal-100 dark:hover:text-teal-800;
   @apply border-teal-500 hover:bg-teal-500;
+}
+
+.btn-action {
+  @apply flex justify-center items-center p-2;
+  @apply border rounded hover:ring-2;
+  @apply transition-all duration-200;
+}
+
+.btn-action.primary {
+  @apply hover:ring-teal-400 hover:text-teal-400;
+  @apply focus:ring-teal-400 focus:text-teal-400;
+}
+
+.btn-action.danger {
+  @apply hover:ring-red-400 hover:text-red-400;
+  @apply focus:ring-red-400 focus:text-red-400;
 }

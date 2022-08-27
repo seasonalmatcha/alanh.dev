@@ -9,12 +9,14 @@ body {
 
 a,
 button,
-input {
+input,
+select,
+textarea {
   @apply ring-0 ring-offset-0;
   @apply focus:ring-2 focus:ring-blue-400;
   @apply outline-none;
 }
 
-button {
-  @apply hover:ring-2 hover:ring-blue-400;
+#__next {
+  @apply min-h-screen flex flex-col;
 }
