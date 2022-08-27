@@ -121,3 +121,42 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verification_tokens")
 }
+
+model Category {
+  id           String         @id @default(cuid())
+  name         String         @unique
+  post         Post[]
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+  PostCategory PostCategory[]
+
+  @@index([name])
+  @@map("post_cetegories")
+}
+
+model Post {
+  id           String         @id @default(cuid())
+  content      String         @db.Text
+  excerpt      String?
+  slug         String         @unique
+  thumbnail    String?
+  title        String
+  categories   Category[]
+  PostCategory PostCategory[]
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+
+  @@index([slug, title])
+  @@map("posts")
+}
+
+model PostCategory {
+  id         String   @id @default(cuid())
+  categoryId String   @map("category_id")
+  postId     String   @map("post_id")
+  category   Category @relation(fields: [categoryId], references: [id])
+  post       Post     @relation(fields: [postId], references: [id])
+
+  @@index([categoryId, postId])
+  @@map("post_categories")
+}

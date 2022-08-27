@@ -19,8 +19,8 @@ const collections = [
     path: 'experience',
   },
   {
-    label: 'Blog Post',
-    path: 'blog-post',
+    label: 'Blog',
+    path: 'blog',
   },
 ];
 
