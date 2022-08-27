@@ -5,6 +5,10 @@ import { protectedSnippetsRouter, snippetsRouter } from './snippets-router';
 import { projectsRouter } from './projects-router';
 import { experiencesRouter } from './experiences-router';
 import { languagesRouter } from './languages-router';
+/**
+ * I'll keep it just in case
+ */
+// import { usersRouter } from './users-router';
 
 export const appRouter = createRouter()
   .transformer(superjson)
@@ -13,5 +17,6 @@ export const appRouter = createRouter()
   .merge('projects.', projectsRouter)
   .merge('experiences.', experiencesRouter)
   .merge('languages.', languagesRouter);
+// .merge('users', usersRouter);
 
 export type AppRouter = typeof appRouter;
