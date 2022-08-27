@@ -5,5 +5,6 @@
   @apply prose-h2:text-xl prose-h2:mb-2 prose-h2:mt-2;
   @apply prose-h3:text-lg prose-h3:mb-2 prose-h3:mt-2;
   @apply text-slate-600 dark:text-gray-500;
-  @apply prose-a:text-teal-400 hover:prose-a:text-teal-500 prose-a:no-underline;
+  @apply prose-a:!text-teal-400 hover:prose-a:!text-teal-500 prose-a:!no-underline;
+  @apply dark:prose-code:!text-neutral-100;
 }
