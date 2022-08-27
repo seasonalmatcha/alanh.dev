@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { env } from './src/env/server.mjs';
 import { withSuperjson } from 'next-superjson';
 
