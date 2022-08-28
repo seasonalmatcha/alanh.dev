@@ -33,7 +33,7 @@ const EditPostPage: NextPageWithLayout = () => {
             path: '/admin',
           },
           {
-            label: 'Snippets',
+            label: 'Posts',
             path: '/admin/blog',
           },
           {
