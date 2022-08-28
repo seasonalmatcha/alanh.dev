@@ -23,6 +23,9 @@ export const postsRouter = createRouter()
           slug: true,
           title: true,
         },
+        orderBy: {
+          createdAt: 'desc',
+        },
       });
     },
   })

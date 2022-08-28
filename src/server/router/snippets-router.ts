@@ -32,6 +32,9 @@ export const snippetsRouter = createRouter()
             },
           },
         },
+        orderBy: {
+          createdAt: 'desc',
+        },
       });
     },
   })
