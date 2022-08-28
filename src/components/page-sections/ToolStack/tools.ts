@@ -1,6 +1,6 @@
 import { IconType } from 'react-icons';
 import { AiFillGithub, AiFillHtml5 } from 'react-icons/ai';
-import { FaCss3Alt, FaBootstrap, FaReact, FaVuejs, FaGitSquare, FaNodeJs } from 'react-icons/fa';
+import { FaCss3Alt, FaReact, FaVuejs, FaGitSquare, FaNodeJs } from 'react-icons/fa';
 import {
   SiNextdotjs,
   SiTailwindcss,
@@ -13,6 +13,7 @@ import {
   SiPrisma,
   SiCypress,
   SiPostgresql,
+  SiStorybook,
 } from 'react-icons/si';
 
 export interface ITool {
@@ -48,9 +49,9 @@ export const tools: ITool[] = [
   {
     col: 8,
     row: 2,
-    href: 'https://getbootstrap.com',
-    title: 'Bootstrap',
-    icon: FaBootstrap,
+    href: 'https://storybook.js.org/',
+    title: 'Storybook',
+    icon: SiStorybook,
   },
   {
     col: 4,
