@@ -1,6 +1,6 @@
 import { createRouter } from './context';
 import { z } from 'zod';
-import { newSnippetSchema, updateSnippetSchema } from '@/schemas';
+import { snippetSchema } from '@/schemas';
 import { createProtectedRouter } from './protected-router';
 
 export const snippetsRouter = createRouter()
@@ -55,18 +55,16 @@ export const snippetsRouter = createRouter()
   });
 
 export const protectedSnippetsRouter = createProtectedRouter()
-  .mutation('create', {
-    input: newSnippetSchema,
+  .mutation('upsert', {
+    input: snippetSchema,
     async resolve({ ctx, input }) {
-      await ctx.prisma.snippet.create({
-        data: input,
+      await ctx.prisma.snippet.upsert({
+        where: {
+          slug: input.slug,
+        },
+        create: input,
+        update: input,
       });
-    },
-  })
-  .mutation('update', {
-    input: updateSnippetSchema,
-    async resolve({ ctx, input }) {
-      await ctx.prisma.snippet.update({ where: { id: input.id }, data: { ...input } });
     },
   })
   .mutation('delete', {
