@@ -6,3 +6,4 @@ export * from './SnippetForm';
 export * from './BookmarkForm';
 export * from './LanguageForm';
 export * from './ExperienceForm';
+export * from './ProjectForm';

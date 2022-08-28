@@ -4,3 +4,4 @@ export * from './users';
 export * from './bookmarks';
 export * from './languages';
 export * from './experience';
+export * from './projects';
