@@ -1,8 +1,6 @@
-import { AuthLayout, PostForm } from '@/components';
+import { AuthLayout, Breadcrumb, PostForm } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
 import Head from 'next/head';
-import Link from 'next/link';
-import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 
 const CreatePostPage: NextPageWithLayout = () => {
   return (
@@ -11,12 +9,23 @@ const CreatePostPage: NextPageWithLayout = () => {
         <title>Create Post</title>
       </Head>
 
-      <Link href="/admin/blog" passHref>
-        <a className="link flex items-center space-x-2 w-fit">
-          <HiOutlineArrowNarrowLeft />
-          <span>Back to index</span>
-        </a>
-      </Link>
+      <Breadcrumb
+        links={[
+          {
+            label: 'Collections',
+            path: '/admin',
+          },
+          {
+            label: 'Posts',
+            path: '/admin/blog',
+          },
+          {
+            label: 'Create',
+            path: '/admin/blog/create',
+            active: true,
+          },
+        ]}
+      />
 
       <h1 className="text-4xl my-8">Create New Post</h1>
 

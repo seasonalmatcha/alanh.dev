@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { FiPaperclip, FiTrash2 } from 'react-icons/fi';
-import { AuthLayout } from '@/components';
+import { AuthLayout, Breadcrumb } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
 
 const AdminSnippetIndexPage: NextPageWithLayout = () => {
@@ -33,7 +33,21 @@ const AdminSnippetIndexPage: NextPageWithLayout = () => {
         <title>Snippets Collection</title>
       </Head>
 
-      <h1 className="text-4xl mb-4">Snippets Collection</h1>
+      <Breadcrumb
+        links={[
+          {
+            label: 'Collections',
+            path: '/admin',
+          },
+          {
+            label: 'Snippets',
+            path: '/admin/snippets',
+            active: true,
+          },
+        ]}
+      />
+
+      <h1 className="text-4xl my-8">Snippets Collection</h1>
 
       <div className="text-right mb-4">
         <Link href="/admin/snippets/create" passHref>

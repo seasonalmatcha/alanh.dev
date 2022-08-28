@@ -1,8 +1,6 @@
-import { AuthLayout, SnippetForm } from '@/components';
+import { AuthLayout, Breadcrumb, SnippetForm } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
 import Head from 'next/head';
-import Link from 'next/link';
-import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import { useRouter } from 'next/router';
 import { trpc } from '@/utils/trpc';
 
@@ -28,12 +26,23 @@ const EditSnippetPage: NextPageWithLayout = () => {
         <title>Edit Snippet</title>
       </Head>
 
-      <Link href="/admin/snippets" passHref>
-        <a className="link flex items-center space-x-2 w-fit">
-          <HiOutlineArrowNarrowLeft />
-          <span>Back to index</span>
-        </a>
-      </Link>
+      <Breadcrumb
+        links={[
+          {
+            label: 'Collections',
+            path: '/admin',
+          },
+          {
+            label: 'Snippets',
+            path: '/admin/snippets',
+          },
+          {
+            label: snippet.title,
+            path: `/admin/snippets/edit/${router.query.slug}`,
+            active: true,
+          },
+        ]}
+      />
 
       <h1 className="text-4xl my-8">Edit Snippet</h1>
 

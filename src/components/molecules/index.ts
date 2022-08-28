@@ -5,3 +5,4 @@ export * from './Section';
 export * from './XMLize';
 export * from './MarkdownPreview';
 export * from './CharacterCount';
+export * from './Breadcrumb';

@@ -1,6 +1,4 @@
-import { AuthLayout, SnippetForm } from '@/components';
-import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
-import Link from 'next/link';
+import { AuthLayout, Breadcrumb, SnippetForm } from '@/components';
 import Head from 'next/head';
 import { NextPageWithLayout } from '@/pages/page';
 
@@ -11,14 +9,25 @@ const CreateSnippetPage: NextPageWithLayout = () => {
         <title>Create Snippet</title>
       </Head>
 
-      <Link href="/admin/snippets" passHref>
-        <a className="link flex items-center space-x-2 w-fit">
-          <HiOutlineArrowNarrowLeft />
-          <span>Back to index</span>
-        </a>
-      </Link>
+      <Breadcrumb
+        links={[
+          {
+            label: 'Collections',
+            path: '/admin',
+          },
+          {
+            label: 'Snippets',
+            path: '/admin/snippets',
+          },
+          {
+            label: 'Create',
+            path: '/admin/snippets/create',
+            active: true,
+          },
+        ]}
+      />
 
-      <h1 className="text-4xl mt-8">Create new snippet</h1>
+      <h1 className="text-4xl my-8">Create new snippet</h1>
 
       <SnippetForm />
     </>

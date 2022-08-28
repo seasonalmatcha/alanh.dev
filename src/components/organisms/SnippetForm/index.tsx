@@ -8,7 +8,7 @@ export const SnippetForm = ({ snippet }: { snippet?: ISnippetForm }) => {
 
   return (
     <>
-      <div className="flex flex-col space-y-4 mt-8">
+      <div className="flex flex-col space-y-4">
         <div className="form-group required">
           <label>Title</label>
           <input

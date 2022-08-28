@@ -1,8 +1,6 @@
-import { AuthLayout, PostForm } from '@/components';
+import { AuthLayout, Breadcrumb, PostForm } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
 import Head from 'next/head';
-import Link from 'next/link';
-import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import { useRouter } from 'next/router';
 import { trpc } from '@/utils/trpc';
 
@@ -28,12 +26,23 @@ const EditPostPage: NextPageWithLayout = () => {
         <title>Edit Post</title>
       </Head>
 
-      <Link href="/admin/blog" passHref>
-        <a className="link flex items-center space-x-2 w-fit">
-          <HiOutlineArrowNarrowLeft />
-          <span>Back to index</span>
-        </a>
-      </Link>
+      <Breadcrumb
+        links={[
+          {
+            label: 'Collections',
+            path: '/admin',
+          },
+          {
+            label: 'Snippets',
+            path: '/admin/blog',
+          },
+          {
+            label: post.title,
+            path: `/admin/blog/edit/${router.query.slug}`,
+            active: true,
+          },
+        ]}
+      />
 
       <h1 className="text-4xl my-8">Edit Post</h1>
 
