@@ -1,5 +1,6 @@
 import { CharacterCounters, Editor } from '@/components';
 import { trpc } from '@/utils/trpc';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { ISnippetForm, useSnippetForm } from './useSnippetForm';
 
 export const SnippetForm = ({ snippet }: { snippet?: ISnippetForm }) => {
@@ -121,8 +122,8 @@ export const SnippetForm = ({ snippet }: { snippet?: ISnippetForm }) => {
           </div>
         </div>
         <div className="text-right">
-          <button role="submit" className="btn-primary" onClick={submit}>
-            Save
+          <button role="submit" className="btn-primary" onClick={submit} disabled={isLoading}>
+            {isLoading ? <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" /> : 'Save'}
           </button>
         </div>
       </div>

@@ -8,10 +8,12 @@ import Head from 'next/head';
 import { FiPaperclip, FiTrash2 } from 'react-icons/fi';
 import { AuthLayout, Breadcrumb } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const AdminPostIndexPage: NextPageWithLayout = () => {
   const { data: posts, isLoading, refetch } = trpc.useQuery(['posts.index']);
   const { mutate: deletePostMutation } = trpc.useMutation(['protected.posts.delete']);
+  const deleteIds = useMemo<Set<string>>(() => new Set(), []);
   const stagger = useMemo(
     () =>
       staggerAnimation({
@@ -22,8 +24,13 @@ const AdminPostIndexPage: NextPageWithLayout = () => {
 
   const deletePost = (id: string) => {
     return () => {
-      deletePostMutation(id);
-      refetch();
+      deleteIds.add(id);
+      deletePostMutation(id, {
+        onSuccess() {
+          deleteIds.delete(id);
+          refetch();
+        },
+      });
     };
   };
 
@@ -79,8 +86,16 @@ const AdminPostIndexPage: NextPageWithLayout = () => {
                   <FiEdit />
                 </a>
               </Link>
-              <button className="btn-action danger" onClick={deletePost(post.id)}>
-                <FiTrash2 />
+              <button
+                className="btn-action danger"
+                onClick={deletePost(post.id)}
+                disabled={deleteIds.has(post.id)}
+              >
+                {deleteIds.has(post.id) ? (
+                  <AiOutlineLoading3Quarters className="animate-spin" />
+                ) : (
+                  <FiTrash2 />
+                )}
               </button>
             </div>
           </motion.div>

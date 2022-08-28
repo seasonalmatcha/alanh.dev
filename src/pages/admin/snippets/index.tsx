@@ -8,10 +8,13 @@ import Head from 'next/head';
 import { FiPaperclip, FiTrash2 } from 'react-icons/fi';
 import { AuthLayout, Breadcrumb } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const AdminSnippetIndexPage: NextPageWithLayout = () => {
   const { data: snippets, isLoading, refetch } = trpc.useQuery(['snippets.index']);
   const { mutate: deleteSnippetMutation } = trpc.useMutation(['protected.snippets.delete']);
+  const deleteIds = useMemo<Set<string>>(() => new Set(), []);
+
   const stagger = useMemo(
     () =>
       staggerAnimation({
@@ -22,8 +25,13 @@ const AdminSnippetIndexPage: NextPageWithLayout = () => {
 
   const deleteSnippet = (id: string) => {
     return () => {
-      deleteSnippetMutation(id);
-      refetch();
+      deleteIds.add(id);
+      deleteSnippetMutation(id, {
+        onSuccess() {
+          deleteIds.delete(id);
+          refetch();
+        },
+      });
     };
   };
 
@@ -79,8 +87,16 @@ const AdminSnippetIndexPage: NextPageWithLayout = () => {
                   <FiEdit />
                 </a>
               </Link>
-              <button className="btn-action danger" onClick={deleteSnippet(snippet.id)}>
-                <FiTrash2 />
+              <button
+                className="btn-action danger"
+                onClick={deleteSnippet(snippet.id)}
+                disabled={deleteIds.has(snippet.id)}
+              >
+                {deleteIds.has(snippet.id) ? (
+                  <AiOutlineLoading3Quarters className="animate-spin" />
+                ) : (
+                  <FiTrash2 />
+                )}
               </button>
             </div>
           </motion.div>

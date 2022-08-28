@@ -1,5 +1,6 @@
 import { CharacterCounters, Editor } from '@/components';
 import { useRef } from 'react';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { FiPlus } from 'react-icons/fi';
 import { IPostForm, usePostForm } from './usePostForm';
 
@@ -132,10 +133,9 @@ export const PostForm = ({ post }: { post?: IPostForm }) => {
               }}
             />
             <button
-              className="px-4 bg-teal-400 hover:bg-teal-500 text-white rounded-r"
-              type="button"
-              role="button"
+              className="btn-primary rounded-l-none"
               onClick={onAddCategory}
+              disabled={isLoading}
             >
               <FiPlus />
             </button>
@@ -143,8 +143,8 @@ export const PostForm = ({ post }: { post?: IPostForm }) => {
         </div>
       </div>
       <div className="text-right mt-8">
-        <button className="btn-primary" onClick={submit}>
-          Save
+        <button className="btn-primary" onClick={submit} disabled={isLoading}>
+          {isLoading ? <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" /> : 'Save'}
         </button>
       </div>
       {isSuccess && (
