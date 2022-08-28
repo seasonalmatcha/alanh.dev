@@ -141,6 +141,7 @@ model Post {
   slug         String         @unique @db.VarChar(255)
   thumbnail    String?
   title        String
+  views        Int            @default(0)
   categories   Category[]
   PostCategory PostCategory[]
   createdAt    DateTime       @default(now()) @map("created_at")
