@@ -5,6 +5,9 @@ import { MarkdownPreview, XMLize } from '@/components';
 import { motion } from 'framer-motion';
 import { prisma } from '@/server/db/client';
 import { Category, Post } from '@prisma/client';
+import { trpc } from '@/utils/trpc';
+import { useEffect } from 'react';
+import Link from 'next/link';
 
 export const getStaticPaths = async () => {
   const slugs = await prisma.post.findMany({ select: { slug: true }, take: 1 });
@@ -50,6 +53,11 @@ export const getStaticProps: GetStaticProps<PostDetailPageProps> = async ({ para
 };
 
 const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
+  const { mutate } = trpc.useMutation(['posts.view'], { ssr: true });
+  useEffect(() => {
+    mutate(post.id);
+  }, [mutate, post.id]);
+
   return (
     <>
       <Head>
@@ -71,10 +79,15 @@ const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ 
             inLine
           />
           <div className="flex space-x-2 mt-2 italic">
-            <span>Published at</span>
             <time dateTime={post.createdAt.toLocaleDateString()}>
-              {post.createdAt.toLocaleDateString()}
+              {post.createdAt.toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
             </time>
+            <span aria-hidden>&#8226;</span>
+            <span>{post.views} views</span>
           </div>
         </motion.div>
 
@@ -84,6 +97,15 @@ const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ 
           </div>
         </motion.div>
       </motion.div>
+      <div className="flex flex-wrap mt-8">
+        {post.categories.map((category) => (
+          <Link key={category.id} href={`/blog/categories/${category.name}`} passHref>
+            <a className="px-4 py-1 rounded-full border mr-2 hover:border-teal-400">
+              {category.name}
+            </a>
+          </Link>
+        ))}
+      </div>
     </>
   );
 };
