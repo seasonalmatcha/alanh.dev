@@ -19,7 +19,7 @@ const links = [
   },
   {
     label: 'Bookmarks',
-    href: '/#',
+    href: '/bookmarks',
   },
   {
     label: 'Blog',

@@ -1,0 +1,25 @@
+.bookmark-card-title {
+  @apply px-4 py-3 relative;
+  @apply bg-neutral-300 dark:bg-neutral-800;
+  @apply dark:text-white font-semibold;
+}
+
+.bookmark-card-pin {
+  @apply w-8 h-8 absolute;
+  @apply right-2 top-0;
+  @apply translate-x-6 -translate-y-4;
+  @apply text-amber-400;
+}
+
+.bookmark-card-body {
+  @apply p-4 flex space-x-4;
+  @apply bg-neutral-200 dark:bg-neutral-700;
+}
+
+.bookmark-card-thumbnail {
+  @apply relative w-32 aspect-[3/4];
+}
+
+.bookmark-card-description {
+  @apply mb-6 dark:text-white;
+}

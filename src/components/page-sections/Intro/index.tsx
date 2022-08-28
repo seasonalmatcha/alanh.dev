@@ -45,9 +45,10 @@ export const IntroSection = () => {
             <XMLize
               text={[
                 "Can't live without a guitar",
+                'Enjoys roasting, grinding, brewing, and drinking coffee',
                 'Seems like a pro but just casual gamer',
                 'Professional bathroom singer',
-                'Denial about being a weeb eventhough watches anime all the time',
+                'Denial about being a weeb even though watches anime all the time',
               ]}
               title={<h4>Hobby</h4>}
             />

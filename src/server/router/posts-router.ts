@@ -1,6 +1,6 @@
 import { createRouter } from './context';
 import { z } from 'zod';
-import { newPostSchema, updatePostSchema } from '@/schemas';
+import { postSchema } from '@/schemas';
 import { createProtectedRouter } from './protected-router';
 
 export const postsRouter = createRouter()
@@ -22,39 +22,102 @@ export const postsRouter = createRouter()
           excerpt: true,
           slug: true,
           title: true,
+          views: true,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      });
+    },
+  })
+  .query('byCategory', {
+    input: z
+      .object({
+        category: z.string().optional(),
+      })
+      .nullish(),
+    resolve({ ctx, input }) {
+      return ctx.prisma.post.findMany({
+        where: {
+          categories: {
+            some: {
+              name: {
+                contains: input?.category ?? '',
+              },
+            },
+          },
+        },
+        select: {
+          id: true,
+          excerpt: true,
+          slug: true,
+          title: true,
+          views: true,
+        },
+        orderBy: {
+          createdAt: 'desc',
         },
       });
     },
   })
   .query('findOne', {
     input: z.object({
-      slug: z.string(),
+      id: z.string().optional(),
+      slug: z.string().optional(),
     }),
     resolve({ ctx, input }) {
       return ctx.prisma.post.findFirst({
         where: {
-          slug: input.slug,
+          OR: {
+            id: input.id,
+            slug: input.slug,
+          },
         },
         include: {
           categories: true,
         },
       });
     },
+  })
+  .mutation('view', {
+    input: z.string(),
+    async resolve({ ctx, input }) {
+      await ctx.prisma.post.update({ where: { id: input }, data: { views: { increment: 1 } } });
+    },
   });
 
 export const protectedPostsRouter = createProtectedRouter()
-  .mutation('create', {
-    input: newPostSchema,
-    async resolve({ ctx, input }) {
-      await ctx.prisma.post.create({
-        data: input,
+  .mutation('upsert', {
+    input: postSchema,
+    resolve({ ctx, input }) {
+      const postCategories = input.categories.map(({ id, name }) => ({
+        where: {
+          name,
+        },
+        create: {
+          id,
+          name,
+        },
+      }));
+
+      return ctx.prisma.post.upsert({
+        where: {
+          id: input.id ?? '',
+        },
+        create: {
+          ...input,
+          categories: {
+            connectOrCreate: postCategories,
+          },
+        },
+        update: {
+          ...input,
+          categories: {
+            set: [],
+            connectOrCreate: postCategories,
+          },
+        },
       });
-    },
-  })
-  .mutation('update', {
-    input: updatePostSchema,
-    async resolve({ ctx, input }) {
-      await ctx.prisma.post.update({ where: { id: input.id }, data: { ...input } });
     },
   })
   .mutation('delete', {

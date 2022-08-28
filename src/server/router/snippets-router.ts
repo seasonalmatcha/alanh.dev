@@ -1,6 +1,6 @@
 import { createRouter } from './context';
 import { z } from 'zod';
-import { newSnippetSchema, updateSnippetSchema } from '@/schemas';
+import { snippetSchema } from '@/schemas';
 import { createProtectedRouter } from './protected-router';
 
 export const snippetsRouter = createRouter()
@@ -32,17 +32,24 @@ export const snippetsRouter = createRouter()
             },
           },
         },
+        orderBy: {
+          createdAt: 'desc',
+        },
       });
     },
   })
   .query('findOne', {
     input: z.object({
-      slug: z.string(),
+      id: z.string().optional(),
+      slug: z.string().optional(),
     }),
     resolve({ ctx, input }) {
       return ctx.prisma.snippet.findFirst({
         where: {
-          slug: input.slug,
+          OR: {
+            id: input.id,
+            slug: input.slug,
+          },
         },
         include: {
           language: true,
@@ -52,18 +59,16 @@ export const snippetsRouter = createRouter()
   });
 
 export const protectedSnippetsRouter = createProtectedRouter()
-  .mutation('create', {
-    input: newSnippetSchema,
-    async resolve({ ctx, input }) {
-      await ctx.prisma.snippet.create({
-        data: input,
+  .mutation('upsert', {
+    input: snippetSchema,
+    resolve({ ctx, input }) {
+      return ctx.prisma.snippet.upsert({
+        where: {
+          id: input.id ?? '',
+        },
+        create: input,
+        update: input,
       });
-    },
-  })
-  .mutation('update', {
-    input: updateSnippetSchema,
-    async resolve({ ctx, input }) {
-      await ctx.prisma.snippet.update({ where: { id: input.id }, data: { ...input } });
     },
   })
   .mutation('delete', {

@@ -29,3 +29,10 @@
   @apply hover:ring-red-400 hover:text-red-400;
   @apply focus:ring-red-400 focus:text-red-400;
 }
+
+.btn-primary,
+.btn-action.primary,
+.btn-action.secondary {
+  @apply disabled:focus:ring-0 disabled:bg-gray-400;
+  @apply disabled:hover:bg-gray-400;
+}

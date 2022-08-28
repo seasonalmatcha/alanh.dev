@@ -3,9 +3,10 @@ import superjson from 'superjson';
 
 import { protectedSnippetsRouter, snippetsRouter } from './snippets-router';
 import { projectsRouter } from './projects-router';
-import { experiencesRouter } from './experiences-router';
-import { languagesRouter } from './languages-router';
+import { experiencesRouter, protectedExperiencesRouter } from './experiences-router';
+import { languagesRouter, protectedLanguagesRouter } from './languages-router';
 import { postsRouter, protectedPostsRouter } from './posts-router';
+import { bookmarksRouter, protectedBookmarksRouter } from './bookmarks-router';
 /**
  * I'll keep it just in case
  */
@@ -17,9 +18,13 @@ export const appRouter = createRouter()
   .merge('protected.snippets.', protectedSnippetsRouter)
   .merge('projects.', projectsRouter)
   .merge('experiences.', experiencesRouter)
+  .merge('protected.experiences.', protectedExperiencesRouter)
   .merge('languages.', languagesRouter)
+  .merge('protected.languages.', protectedLanguagesRouter)
   .merge('posts.', postsRouter)
-  .merge('protected.posts.', protectedPostsRouter);
+  .merge('protected.posts.', protectedPostsRouter)
+  .merge('bookmarks.', bookmarksRouter)
+  .merge('protected.bookmarks.', protectedBookmarksRouter);
 // .merge('users', usersRouter);
 
 export type AppRouter = typeof appRouter;

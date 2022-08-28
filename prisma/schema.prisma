@@ -26,10 +26,10 @@ model Snippet {
   id          String    @id @default(cuid())
   content     String    @db.Text
   description String?
-  excerpt     String?
+  excerpt     String?   @db.VarChar(255)
   logo        String?
   title       String
-  slug        String
+  slug        String    @db.VarChar(255)
   languageId  String?   @map("language_id")
   language    Language? @relation(fields: [languageId], references: [id], onDelete: SetNull)
   createdAt   DateTime  @default(now()) @map("created_at")
@@ -137,10 +137,11 @@ model Category {
 model Post {
   id           String         @id @default(cuid())
   content      String         @db.Text
-  excerpt      String?
-  slug         String         @unique
+  excerpt      String?        @db.VarChar(255)
+  slug         String         @unique @db.VarChar(255)
   thumbnail    String?
   title        String
+  views        Int            @default(0)
   categories   Category[]
   PostCategory PostCategory[]
   createdAt    DateTime       @default(now()) @map("created_at")
@@ -159,4 +160,17 @@ model PostCategory {
 
   @@index([categoryId, postId])
   @@map("post_categories")
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  excerpt   String?  @db.VarChar(255)
+  thumbnail String?
+  title     String   @db.VarChar(255)
+  url       String   @db.VarChar(1024)
+  urlText   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("bookmarks")
 }
