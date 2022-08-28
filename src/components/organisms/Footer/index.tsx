@@ -17,7 +17,7 @@ const linksGroup: Links[][] = [
       label: 'Snippets',
     },
     {
-      href: '#',
+      href: '/bookmarks',
       label: 'Bookmarks',
     },
     {

@@ -161,3 +161,16 @@ model PostCategory {
   @@index([categoryId, postId])
   @@map("post_categories")
 }
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  excerpt   String?  @db.VarChar(255)
+  thumbnail String?
+  title     String   @db.VarChar(255)
+  url       String   @db.VarChar(1024)
+  urlText   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("bookmarks")
+}

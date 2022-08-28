@@ -23,6 +23,10 @@ const collections = [
     label: 'Blog',
     path: 'blog',
   },
+  {
+    label: 'Bookmarks',
+    path: 'bookmarks',
+  },
 ];
 
 const AdminIndexPage: NextPageWithLayout = () => {
