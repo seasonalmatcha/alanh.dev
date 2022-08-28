@@ -3,9 +3,9 @@ import { trpc } from '@/utils/trpc';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { ISnippetForm, useSnippetForm } from './useSnippetForm';
 
-export const SnippetForm = ({ snippet }: { snippet?: ISnippetForm }) => {
+export const SnippetForm = (props: ISnippetForm) => {
   const { data: languages } = trpc.useQuery(['languages.index']);
-  const { fieldErrors, isLoading, isSuccess, state, submit, updateField } = useSnippetForm(snippet);
+  const { fieldErrors, isLoading, isSuccess, state, submit, updateField } = useSnippetForm(props);
 
   return (
     <>

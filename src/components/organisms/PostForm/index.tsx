@@ -4,7 +4,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { FiPlus } from 'react-icons/fi';
 import { IPostForm, usePostForm } from './usePostForm';
 
-export const PostForm = ({ post }: { post?: IPostForm }) => {
+export const PostForm = (props: IPostForm) => {
   const categoryInputRef = useRef<HTMLInputElement>(null);
   const {
     addCategory,
@@ -15,7 +15,7 @@ export const PostForm = ({ post }: { post?: IPostForm }) => {
     state,
     submit,
     updateField,
-  } = usePostForm(post);
+  } = usePostForm(props);
 
   const onAddCategory = () => {
     if (!categoryInputRef.current) return;

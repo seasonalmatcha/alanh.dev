@@ -9,7 +9,9 @@ enum ActionType {
   UPDATE_VALUE,
 }
 
-const initialState: IPostForm = {
+type PostState = typeof postSchema._type;
+
+const defaultState: PostState = {
   content: '',
   excerpt: '',
   slug: '',
@@ -18,12 +20,10 @@ const initialState: IPostForm = {
   categories: [],
 };
 
-export type IPostForm = typeof postSchema._type;
-
 type Action =
   | {
       type: ActionType.UPDATE_VALUE;
-      key: keyof IPostForm;
+      key: keyof PostState;
       value: string;
     }
   | {
@@ -35,7 +35,7 @@ type Action =
       value: number;
     };
 
-const reducer = (state: IPostForm, action: Action): IPostForm => {
+const reducer = (state: PostState, action: Action): PostState => {
   switch (action.type) {
     case ActionType.UPDATE_VALUE:
       return { ...state, [action.key]: action.value };
@@ -50,9 +50,13 @@ const reducer = (state: IPostForm, action: Action): IPostForm => {
   }
 };
 
-export const usePostForm = (post = initialState) => {
+export interface IPostForm {
+  initialState?: typeof postSchema._type;
+}
+
+export const usePostForm = ({ initialState = defaultState }: IPostForm) => {
   const { mutate, isLoading, reset, isSuccess } = trpc.useMutation(['protected.posts.upsert']);
-  const [state, dispatch] = useReducer(reducer, { ...post });
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [fieldErrors, setFieldErrors] = useState<Partial<inferFormattedError<typeof postSchema>>>(
     {},
   );
@@ -69,7 +73,7 @@ export const usePostForm = (post = initialState) => {
     };
   };
 
-  const updateField = (key: keyof IPostForm) => {
+  const updateField = (key: keyof PostState) => {
     return (
       arg?: string | ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     ) => {
@@ -96,10 +100,11 @@ export const usePostForm = (post = initialState) => {
     }
 
     mutate(result.data, {
-      onSuccess: () => {
+      onSuccess: (post) => {
         setTimeout(() => {
           reset();
         }, 3000);
+        dispatch({ type: ActionType.UPDATE_VALUE, key: 'id', value: post.id });
       },
     });
   };

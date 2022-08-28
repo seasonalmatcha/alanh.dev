@@ -8,7 +8,7 @@ const EditPostPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { data: post, isLoading } = trpc.useQuery([
     'posts.findOne',
-    { slug: router.query.slug as string },
+    { id: router.query.id as string },
   ]);
 
   if (isLoading) {
@@ -39,13 +39,13 @@ const EditPostPage: NextPageWithLayout = () => {
           },
           {
             label: post.title,
-            path: `/admin/blog/edit/${router.query.slug}`,
+            path: `/admin/blog/edit/${router.query.id}`,
             active: true,
           },
         ]}
       >
         <PostForm
-          post={{
+          initialState={{
             categories: post.categories,
             content: post.content,
             slug: post.slug,

@@ -72,7 +72,7 @@ const AdminSnippetIndexPage: NextPageWithLayout = () => {
                 <a className="link-secondary w-full">{snippet.title}</a>
               </Link>
               <div className="flex items-center space-x-2">
-                <Link href={`/admin/snippets/edit/${snippet.slug}`} passHref>
+                <Link href={`/admin/snippets/edit/${snippet.id}`} passHref>
                   <a className="btn-action primary">
                     <FiEdit />
                   </a>

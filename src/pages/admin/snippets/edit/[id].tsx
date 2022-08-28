@@ -8,7 +8,7 @@ const EditSnippetPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { data: snippet, isLoading } = trpc.useQuery([
     'snippets.findOne',
-    { slug: router.query.slug as string },
+    { id: router.query.id as string },
   ]);
 
   if (isLoading) {
@@ -39,13 +39,14 @@ const EditSnippetPage: NextPageWithLayout = () => {
           },
           {
             label: snippet.title,
-            path: `/admin/snippets/edit/${router.query.slug}`,
+            path: `/admin/snippets/edit/${router.query.id}`,
             active: true,
           },
         ]}
       >
         <SnippetForm
-          snippet={{
+          initialState={{
+            id: snippet.id,
             content: snippet.content,
             slug: snippet.slug,
             title: snippet.title,

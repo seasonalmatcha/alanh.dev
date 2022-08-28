@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const snippetSchema = z.object({
+  id: z.string().trim().optional(),
   content: z.string().trim().min(1, { message: 'Content is required' }),
   description: z.string().trim().optional(),
   excerpt: z.string().trim().optional(),

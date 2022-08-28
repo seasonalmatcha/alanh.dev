@@ -62,12 +62,16 @@ export const postsRouter = createRouter()
   })
   .query('findOne', {
     input: z.object({
-      slug: z.string(),
+      id: z.string().optional(),
+      slug: z.string().optional(),
     }),
     resolve({ ctx, input }) {
-      return ctx.prisma.post.findUnique({
+      return ctx.prisma.post.findFirst({
         where: {
-          slug: input.slug,
+          OR: {
+            id: input.id,
+            slug: input.slug,
+          },
         },
         include: {
           categories: true,
@@ -85,7 +89,7 @@ export const postsRouter = createRouter()
 export const protectedPostsRouter = createProtectedRouter()
   .mutation('upsert', {
     input: postSchema,
-    async resolve({ ctx, input }) {
+    resolve({ ctx, input }) {
       const postCategories = input.categories.map(({ id, name }) => ({
         where: {
           name,
@@ -96,9 +100,9 @@ export const protectedPostsRouter = createProtectedRouter()
         },
       }));
 
-      await ctx.prisma.post.upsert({
+      return ctx.prisma.post.upsert({
         where: {
-          slug: input.slug,
+          id: input.id ?? '',
         },
         create: {
           ...input,

@@ -40,12 +40,16 @@ export const snippetsRouter = createRouter()
   })
   .query('findOne', {
     input: z.object({
-      slug: z.string(),
+      id: z.string().optional(),
+      slug: z.string().optional(),
     }),
     resolve({ ctx, input }) {
       return ctx.prisma.snippet.findFirst({
         where: {
-          slug: input.slug,
+          OR: {
+            id: input.id,
+            slug: input.slug,
+          },
         },
         include: {
           language: true,
@@ -57,10 +61,10 @@ export const snippetsRouter = createRouter()
 export const protectedSnippetsRouter = createProtectedRouter()
   .mutation('upsert', {
     input: snippetSchema,
-    async resolve({ ctx, input }) {
-      await ctx.prisma.snippet.upsert({
+    resolve({ ctx, input }) {
+      return ctx.prisma.snippet.upsert({
         where: {
-          slug: input.slug,
+          id: input.id ?? '',
         },
         create: input,
         update: input,

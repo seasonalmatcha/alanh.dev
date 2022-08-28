@@ -7,9 +7,9 @@ enum ActionType {
   UPDATE_VALUE,
 }
 
-export type ISnippetForm = typeof snippetSchema._type;
+type SnippetState = typeof snippetSchema._type;
 
-const initialState: ISnippetForm = {
+const defaultState: SnippetState = {
   content: '',
   description: '',
   excerpt: '',
@@ -21,11 +21,11 @@ const initialState: ISnippetForm = {
 
 type Action = {
   type: ActionType.UPDATE_VALUE;
-  key: keyof ISnippetForm;
+  key: keyof SnippetState;
   value: string;
 };
 
-const reducer = (state: ISnippetForm, action: Action): ISnippetForm => {
+const reducer = (state: SnippetState, action: Action): SnippetState => {
   switch (action.type) {
     case ActionType.UPDATE_VALUE:
       return { ...state, [action.key]: action.value };
@@ -34,14 +34,18 @@ const reducer = (state: ISnippetForm, action: Action): ISnippetForm => {
   }
 };
 
-export const useSnippetForm = (snippet = initialState) => {
+export interface ISnippetForm {
+  initialState?: typeof snippetSchema._type;
+}
+
+export const useSnippetForm = ({ initialState = defaultState }: ISnippetForm) => {
   const { mutate, isLoading, reset, isSuccess } = trpc.useMutation(['protected.snippets.upsert']);
-  const [state, dispatch] = useReducer(reducer, { ...snippet });
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [fieldErrors, setFieldErrors] = useState<
     Partial<inferFormattedError<typeof snippetSchema>>
   >({});
 
-  const updateField = (key: keyof ISnippetForm) => {
+  const updateField = (key: keyof SnippetState) => {
     return (
       arg?: string | ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     ) => {
@@ -68,10 +72,11 @@ export const useSnippetForm = (snippet = initialState) => {
     }
 
     mutate(result.data, {
-      onSuccess: () => {
+      onSuccess: (snippet) => {
         setTimeout(() => {
           reset();
         }, 3000);
+        dispatch({ type: ActionType.UPDATE_VALUE, key: 'id', value: snippet.id });
       },
     });
   };

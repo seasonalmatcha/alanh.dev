@@ -71,7 +71,7 @@ const AdminPostIndexPage: NextPageWithLayout = () => {
                 <a className="link-secondary w-full">{post.title}</a>
               </Link>
               <div className="flex items-center space-x-2">
-                <Link href={`/admin/blog/edit/${post.slug}`} passHref>
+                <Link href={`/admin/blog/edit/${post.id}`} passHref>
                   <a className="btn-action primary">
                     <FiEdit />
                   </a>
