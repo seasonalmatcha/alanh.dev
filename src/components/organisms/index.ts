@@ -4,3 +4,4 @@ export * from './Editor';
 export * from './PostForm';
 export * from './SnippetForm';
 export * from './BookmarkForm';
+export * from './LanguageForm';

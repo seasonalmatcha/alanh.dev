@@ -4,7 +4,7 @@ import superjson from 'superjson';
 import { protectedSnippetsRouter, snippetsRouter } from './snippets-router';
 import { projectsRouter } from './projects-router';
 import { experiencesRouter } from './experiences-router';
-import { languagesRouter } from './languages-router';
+import { languagesRouter, protectedLanguagesRouter } from './languages-router';
 import { postsRouter, protectedPostsRouter } from './posts-router';
 import { bookmarksRouter, protectedBookmarksRouter } from './bookmarks-router';
 /**
@@ -19,6 +19,7 @@ export const appRouter = createRouter()
   .merge('projects.', projectsRouter)
   .merge('experiences.', experiencesRouter)
   .merge('languages.', languagesRouter)
+  .merge('protected.languages.', protectedLanguagesRouter)
   .merge('posts.', postsRouter)
   .merge('protected.posts.', protectedPostsRouter)
   .merge('bookmarks.', bookmarksRouter)

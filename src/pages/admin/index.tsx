@@ -27,6 +27,10 @@ const collections = [
     label: 'Bookmarks',
     path: 'bookmarks',
   },
+  {
+    label: 'Languages',
+    path: 'languages',
+  },
 ];
 
 const AdminIndexPage: NextPageWithLayout = () => {
