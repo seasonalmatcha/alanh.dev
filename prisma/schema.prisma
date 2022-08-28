@@ -26,10 +26,10 @@ model Snippet {
   id          String    @id @default(cuid())
   content     String    @db.Text
   description String?
-  excerpt     String?
+  excerpt     String?   @db.VarChar(255)
   logo        String?
   title       String
-  slug        String
+  slug        String    @db.VarChar(255)
   languageId  String?   @map("language_id")
   language    Language? @relation(fields: [languageId], references: [id], onDelete: SetNull)
   createdAt   DateTime  @default(now()) @map("created_at")
@@ -137,8 +137,8 @@ model Category {
 model Post {
   id           String         @id @default(cuid())
   content      String         @db.Text
-  excerpt      String?
-  slug         String         @unique
+  excerpt      String?        @db.VarChar(255)
+  slug         String         @unique @db.VarChar(255)
   thumbnail    String?
   title        String
   categories   Category[]
