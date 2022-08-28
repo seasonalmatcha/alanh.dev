@@ -1,4 +1,4 @@
-import { AuthLayout, Breadcrumb, SnippetForm } from '@/components';
+import { AuthLayout, DashboardTemplate, SnippetForm } from '@/components';
 import Head from 'next/head';
 import { NextPageWithLayout } from '@/pages/page';
 
@@ -9,7 +9,8 @@ const CreateSnippetPage: NextPageWithLayout = () => {
         <title>Create Snippet</title>
       </Head>
 
-      <Breadcrumb
+      <DashboardTemplate
+        title="Create new snippet"
         links={[
           {
             label: 'Collections',
@@ -25,11 +26,9 @@ const CreateSnippetPage: NextPageWithLayout = () => {
             active: true,
           },
         ]}
-      />
-
-      <h1 className="text-4xl my-8">Create new snippet</h1>
-
-      <SnippetForm />
+      >
+        <SnippetForm />
+      </DashboardTemplate>
     </>
   );
 };

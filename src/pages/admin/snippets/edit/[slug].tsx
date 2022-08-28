@@ -1,4 +1,4 @@
-import { AuthLayout, Breadcrumb, SnippetForm } from '@/components';
+import { AuthLayout, DashboardTemplate, SnippetForm } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -26,7 +26,8 @@ const EditSnippetPage: NextPageWithLayout = () => {
         <title>Edit Snippet</title>
       </Head>
 
-      <Breadcrumb
+      <DashboardTemplate
+        title="Edit Snippet"
         links={[
           {
             label: 'Collections',
@@ -42,21 +43,19 @@ const EditSnippetPage: NextPageWithLayout = () => {
             active: true,
           },
         ]}
-      />
-
-      <h1 className="text-4xl my-8">Edit Snippet</h1>
-
-      <SnippetForm
-        snippet={{
-          content: snippet.content,
-          slug: snippet.slug,
-          title: snippet.title,
-          description: snippet.description ?? undefined,
-          excerpt: snippet.excerpt ?? undefined,
-          languageId: snippet.languageId ?? undefined,
-          logo: snippet.logo ?? undefined,
-        }}
-      />
+      >
+        <SnippetForm
+          snippet={{
+            content: snippet.content,
+            slug: snippet.slug,
+            title: snippet.title,
+            description: snippet.description ?? undefined,
+            excerpt: snippet.excerpt ?? undefined,
+            languageId: snippet.languageId ?? undefined,
+            logo: snippet.logo ?? undefined,
+          }}
+        />
+      </DashboardTemplate>
     </>
   );
 };

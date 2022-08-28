@@ -1,4 +1,4 @@
-import { AuthLayout, Breadcrumb, PostForm } from '@/components';
+import { AuthLayout, DashboardTemplate, PostForm } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -26,7 +26,8 @@ const EditPostPage: NextPageWithLayout = () => {
         <title>Edit Post</title>
       </Head>
 
-      <Breadcrumb
+      <DashboardTemplate
+        title="Edit Post"
         links={[
           {
             label: 'Collections',
@@ -42,21 +43,19 @@ const EditPostPage: NextPageWithLayout = () => {
             active: true,
           },
         ]}
-      />
-
-      <h1 className="text-4xl my-8">Edit Post</h1>
-
-      <PostForm
-        post={{
-          categories: post.categories,
-          content: post.content,
-          slug: post.slug,
-          title: post.title,
-          excerpt: post.excerpt ?? undefined,
-          id: post.id,
-          thumbnail: post.thumbnail ?? undefined,
-        }}
-      />
+      >
+        <PostForm
+          post={{
+            categories: post.categories,
+            content: post.content,
+            slug: post.slug,
+            title: post.title,
+            excerpt: post.excerpt ?? undefined,
+            id: post.id,
+            thumbnail: post.thumbnail ?? undefined,
+          }}
+        />
+      </DashboardTemplate>
     </>
   );
 };

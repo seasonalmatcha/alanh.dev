@@ -1,6 +1,7 @@
 import { staggerAnimation } from '@/animations';
-import { AuthLayout } from '@/components';
+import { AuthLayout, DashboardTemplate } from '@/components';
 import { motion } from 'framer-motion';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useMemo } from 'react';
 import { NextPageWithLayout } from '../page';
@@ -35,26 +36,31 @@ const AdminIndexPage: NextPageWithLayout = () => {
 
   return (
     <>
-      <h1 className="text-4xl mb-8">Collections</h1>
-      <div className="flex flex-col space-y-2">
-        <motion.div
-          variants={stagger.parent}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col space-y-2"
-        >
-          {collections.map((collection) => (
-            <Link key={collection.label} href={`/admin/${collection.path}`} passHref>
-              <motion.a
-                variants={stagger.children}
-                className="link-secondary w-full border rounded p-2"
-              >
-                {collection.label}
-              </motion.a>
-            </Link>
-          ))}
-        </motion.div>
-      </div>
+      <Head>
+        <title>Admin Dashboard</title>
+      </Head>
+
+      <DashboardTemplate title="Collection">
+        <div className="flex flex-col space-y-2">
+          <motion.div
+            variants={stagger.parent}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col space-y-2"
+          >
+            {collections.map((collection) => (
+              <Link key={collection.label} href={`/admin/${collection.path}`} passHref>
+                <motion.a
+                  variants={stagger.children}
+                  className="link-secondary w-full border rounded p-2"
+                >
+                  {collection.label}
+                </motion.a>
+              </Link>
+            ))}
+          </motion.div>
+        </div>
+      </DashboardTemplate>
     </>
   );
 };
