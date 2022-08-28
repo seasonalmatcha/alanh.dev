@@ -1,5 +1,4 @@
-import { AuthLayout } from '@/components';
-import { PostForm } from '@/components/organisms/PostForm';
+import { AuthLayout, PostForm } from '@/components';
 import { NextPageWithLayout } from '@/pages/page';
 import Head from 'next/head';
 import Link from 'next/link';

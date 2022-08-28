@@ -1,27 +1,7 @@
-import { Editor } from '@/components';
-import classNames from 'classnames';
-import { HTMLProps, useRef } from 'react';
+import { CharacterCounters, Editor } from '@/components';
+import { useRef } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { IPostForm, usePostForm } from './usePostForm';
-
-interface ICharacterCountersProps extends HTMLProps<HTMLDivElement> {
-  text?: string;
-  max?: number;
-}
-const CharacterCounters = ({
-  text,
-  max = Infinity,
-  className,
-  ...restProps
-}: ICharacterCountersProps) => {
-  if (!text || text.length < 1) return null;
-
-  return (
-    <div className={classNames(className, text.length > max ? 'text-red-500' : '')} {...restProps}>
-      {text.length} {max !== Infinity && <span>of {max}</span>} chars
-    </div>
-  );
-};
 
 export const PostForm = ({ post }: { post?: IPostForm }) => {
   const categoryInputRef = useRef<HTMLInputElement>(null);
