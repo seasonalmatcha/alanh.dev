@@ -31,7 +31,6 @@ export const IntroSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.65 } }}
           className="flex flex-col space-y-4"
-          onTap={(_, info) => console.log(info)}
         >
           <div className="flex flex-col space-y-2 rounded-lg p-4 border">
             <XMLize
