@@ -1,4 +1,4 @@
-import { Commentize, Section, SnippetCard } from '@/components';
+import { AwaitText, Commentize, Section, SnippetCard } from '@/components';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 const Snippets: NextPage = () => {
   const router = useRouter();
-  const { data: snippets } = trpc.useQuery(['snippets.index']);
+  const { data: snippets, isLoading } = trpc.useQuery(['snippets.index']);
   const [fetchingIndex, setFetchingIndex] = useState<number | undefined>(undefined);
 
   const stagger = useMemo(() => {
@@ -77,6 +77,11 @@ const Snippets: NextPage = () => {
           initial="hidden"
           animate="show"
         >
+          {isLoading && (
+            <motion.div variants={stagger.children}>
+              <AwaitText text="mySnippets" />
+            </motion.div>
+          )}
           {snippets?.map((snippet, i) => (
             <motion.div key={i} variants={stagger.children} layoutId={`${snippet.id}`}>
               <SnippetCard {...snippet} bounce={i === fetchingIndex} />

@@ -1,4 +1,4 @@
-import { PostCard, Section } from '@/components';
+import { AwaitText, PostCard, Section } from '@/components';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
@@ -10,7 +10,10 @@ import { useRouter } from 'next/router';
 const PostsByCategoryPage: NextPage = () => {
   const router = useRouter();
   const categoryName = router.query?.name as string;
-  const { data: posts } = trpc.useQuery(['posts.byCategory', { category: categoryName }]);
+  const { data: posts, isLoading } = trpc.useQuery([
+    'posts.byCategory',
+    { category: categoryName },
+  ]);
   const [fetchingIndex, setFetchingIndex] = useState<number | undefined>(undefined);
 
   const stagger = useMemo(() => {
@@ -68,6 +71,11 @@ const PostsByCategoryPage: NextPage = () => {
           initial="hidden"
           animate="show"
         >
+          {isLoading && (
+            <motion.div variants={stagger.children}>
+              <AwaitText text="myArticles" />
+            </motion.div>
+          )}
           {posts?.map((post, i) => (
             <motion.div key={i} variants={stagger.children} layoutId={`${post.id}`}>
               <PostCard {...post} bounce={i === fetchingIndex} />
