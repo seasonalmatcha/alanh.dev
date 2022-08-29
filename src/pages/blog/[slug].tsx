@@ -55,8 +55,12 @@ export const getStaticProps: GetStaticProps<PostDetailPageProps> = async ({ para
 const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
   const { mutate } = trpc.useMutation(['posts.view'], { ssr: true });
   useEffect(() => {
-    mutate(post.id);
-  }, [mutate, post.id]);
+    mutate(post.id, {
+      onSuccess: (data) => {
+        post.views = data.views;
+      },
+    });
+  }, [mutate, post]);
 
   return (
     <>

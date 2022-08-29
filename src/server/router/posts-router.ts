@@ -81,8 +81,14 @@ export const postsRouter = createRouter()
   })
   .mutation('view', {
     input: z.string(),
-    async resolve({ ctx, input }) {
-      await ctx.prisma.post.update({ where: { id: input }, data: { views: { increment: 1 } } });
+    resolve({ ctx, input }) {
+      return ctx.prisma.post.update({
+        where: { id: input },
+        data: { views: { increment: 1 } },
+        select: {
+          views: true,
+        },
+      });
     },
   });
 
