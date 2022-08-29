@@ -8,6 +8,7 @@ import { Category, Post } from '@prisma/client';
 import { trpc } from '@/utils/trpc';
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { generateMetatags } from '@/utils/generateMetatags';
 
 export const getStaticPaths = async () => {
   const slugs = await prisma.post.findMany({ select: { slug: true }, take: 1 });
@@ -65,7 +66,11 @@ const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ 
   return (
     <>
       <Head>
-        <title>{post.title} - Alan Habibullah</title>
+        {generateMetatags({
+          title: post.title,
+          url: `/blog/${post.slug}`,
+          description: post.excerpt ?? undefined,
+        })}
       </Head>
 
       {post.thumbnail && (

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { fadeUp } from '@/animations';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
+import { generateMetatags } from '@/utils/generateMetatags';
 
 const PostsByCategoryPage: NextPage = () => {
   const router = useRouter();
@@ -35,7 +36,11 @@ const PostsByCategoryPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Blog - Alan Habibullah</title>
+        {generateMetatags({
+          title: 'Blog - Alan Habibullah',
+          url: `/categories/${categoryName}`,
+          description: `See article related to ${categoryName}`,
+        })}
       </Head>
 
       <MainTemplate title={`Post category: ${categoryName}`}>

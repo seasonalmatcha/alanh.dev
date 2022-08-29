@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { fadeUp } from '@/animations';
+import { generateMetatags } from '@/utils/generateMetatags';
 
 const Snippets: NextPage = () => {
   const router = useRouter();
@@ -30,7 +31,11 @@ const Snippets: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Snippets - Alan Habibullah</title>
+        {generateMetatags({
+          title: 'Snippets - Alan Habibullah',
+          url: '/snippets',
+          description: 'Code snippets I frequently use in various projects',
+        })}
       </Head>
 
       <MainTemplate
