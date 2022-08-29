@@ -1,9 +1,9 @@
-import { AwaitText, PostCard, Section } from '@/components';
+import { AwaitText, MainTemplate, PostCard } from '@/components';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
 import { motion } from 'framer-motion';
-import { staggerAnimation } from '@/animations';
+import { fadeUp } from '@/animations';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -16,22 +16,7 @@ const PostsByCategoryPage: NextPage = () => {
   ]);
   const [fetchingIndex, setFetchingIndex] = useState<number | undefined>(undefined);
 
-  const stagger = useMemo(() => {
-    return staggerAnimation({
-      parent: {
-        show: {
-          transition: {
-            delayChildren: 0.25,
-            staggerChildren: 0.05,
-          },
-        },
-      },
-      children: {
-        hidden: { y: 50 },
-        show: { y: 0 },
-      },
-    });
-  }, []);
+  const fadeAnimation = useMemo(() => fadeUp(), []);
 
   useEffect(() => {
     const handler = (...args: string[]) => {
@@ -53,36 +38,25 @@ const PostsByCategoryPage: NextPage = () => {
         <title>Blog - Alan Habibullah</title>
       </Head>
 
-      <Section
-        subtitle={
-          <motion.h1
-            className="text-4xl font-bold"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-          >
-            Post category: {categoryName}
-          </motion.h1>
-        }
-        inLineTitle
-      >
-        <motion.div
-          className="flex flex-col space-y-8 mt-10"
-          variants={stagger.parent}
-          initial="hidden"
-          animate="show"
-        >
-          {isLoading && (
-            <motion.div variants={stagger.children}>
-              <AwaitText text="myArticles" />
-            </motion.div>
+      <MainTemplate title={`Post category: ${categoryName}`}>
+        <div className="flex flex-col space-y-8 mt-10">
+          {isLoading ? (
+            <AwaitText text="myArticles" />
+          ) : (
+            posts?.map((post, i) => (
+              <motion.div
+                key={i}
+                variants={fadeAnimation}
+                initial="hidden"
+                animate="show"
+                layoutId={`${post.id}`}
+              >
+                <PostCard {...post} bounce={i === fetchingIndex} />
+              </motion.div>
+            ))
           )}
-          {posts?.map((post, i) => (
-            <motion.div key={i} variants={stagger.children} layoutId={`${post.id}`}>
-              <PostCard {...post} bounce={i === fetchingIndex} />
-            </motion.div>
-          ))}
-        </motion.div>
-      </Section>
+        </div>
+      </MainTemplate>
     </>
   );
 };
