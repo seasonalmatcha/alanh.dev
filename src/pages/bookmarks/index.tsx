@@ -1,4 +1,4 @@
-import { BookmarkCard, Commentize, Section } from '@/components';
+import { AwaitText, BookmarkCard, Commentize, Section } from '@/components';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
@@ -7,7 +7,7 @@ import { staggerAnimation } from '@/animations';
 import { useMemo } from 'react';
 
 const BookmarksIndexPage: NextPage = () => {
-  const { data: bookmarks } = trpc.useQuery(['bookmarks.index']);
+  const { data: bookmarks, isLoading } = trpc.useQuery(['bookmarks.index']);
 
   const stagger = useMemo(() => {
     return staggerAnimation({
@@ -54,6 +54,11 @@ const BookmarksIndexPage: NextPage = () => {
           initial="hidden"
           animate="show"
         >
+          {isLoading && (
+            <motion.div variants={stagger.children}>
+              <AwaitText text="myBookmarks" />
+            </motion.div>
+          )}
           {bookmarks?.map((bookmark) => (
             <motion.div key={bookmark.id} variants={stagger.children}>
               <BookmarkCard {...bookmark} />

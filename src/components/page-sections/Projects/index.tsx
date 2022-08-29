@@ -1,10 +1,17 @@
 import { fadeUp } from '@/animations';
 import { InView, Section, ProjectCard } from '@/components';
-import { trpc } from '@/utils/trpc';
+import { Project } from '@prisma/client';
 import { useMemo } from 'react';
 
-export const ProjectSection = () => {
-  const { data: projects } = trpc.useQuery(['projects.index']);
+interface IProject extends Omit<Project, 'description'> {
+  description: string[];
+}
+
+export type IProjectSection = {
+  projects: IProject[];
+};
+
+export const ProjectSection = ({ projects }: IProjectSection) => {
   const variants = useMemo(() => fadeUp(), []);
 
   return (

@@ -1,10 +1,17 @@
 import { fadeUp } from '@/animations';
 import { Commentize, InView, Section } from '@/components';
-import { trpc } from '@/utils/trpc';
+import { Experience } from '@prisma/client';
 import { useMemo } from 'react';
 
-export const ExperienceSection = () => {
-  const { data: experiences } = trpc.useQuery(['experiences.index']);
+interface IExperience extends Omit<Experience, 'description'> {
+  description: string[];
+}
+
+export type IExperienceSectionProps = {
+  experiences: IExperience[];
+};
+
+export const ExperienceSection = ({ experiences }: IExperienceSectionProps) => {
   const variants = useMemo(() => fadeUp(), []);
 
   return (

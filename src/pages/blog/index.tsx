@@ -1,4 +1,4 @@
-import { Commentize, PostCard, Section } from '@/components';
+import { AwaitText, Commentize, PostCard, Section } from '@/components';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
@@ -11,7 +11,7 @@ import { FiSearch } from 'react-icons/fi';
 const PostsIndex: NextPage = () => {
   const router = useRouter();
   const [query, setQuery] = useState('');
-  const { data: posts } = trpc.useQuery(['posts.index', { query }]);
+  const { data: posts, isLoading } = trpc.useQuery(['posts.index', { query }]);
   const [fetchingIndex, setFetchingIndex] = useState<number | undefined>(undefined);
 
   const stagger = useMemo(() => {
@@ -75,14 +75,18 @@ const PostsIndex: NextPage = () => {
           />
         </motion.div>
 
-        <div className="mt-8 relative">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 0.25 } }}
+          className="mt-8 relative"
+        >
           <input
             placeholder="Search article ..."
             className="w-full !pl-10"
             onChange={({ target }) => setQuery(target.value)}
           />
           <FiSearch className="absolute top-1/2 left-2 -translate-y-1/2 w-5 h-5" />
-        </div>
+        </motion.div>
 
         <motion.div
           className="flex flex-col space-y-8 mt-10"
@@ -90,6 +94,11 @@ const PostsIndex: NextPage = () => {
           initial="hidden"
           animate="show"
         >
+          {isLoading && (
+            <motion.div variants={stagger.children}>
+              <AwaitText text="myArticles" />
+            </motion.div>
+          )}
           {posts?.map((post, i) => (
             <motion.div key={i} variants={stagger.children} layoutId={`${post.id}`}>
               <PostCard {...post} bounce={i === fetchingIndex} />

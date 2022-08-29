@@ -13,7 +13,6 @@ code.hljs {
   overflow-x: auto !important;
   font-family: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   border-radius: 0.3em;
-  font-size: 12px;
 }
 .hljs {
   color: #abb2bf;
