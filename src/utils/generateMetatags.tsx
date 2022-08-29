@@ -9,7 +9,7 @@ type Metatags = {
 
 export const generateMetatags = ({
   description = 'Frontend Engineer, guitarist, gamer, and coffee addict',
-  thumbnails = `${baseUrl}static/thumbnails.png`,
+  thumbnails = `${baseUrl}/static/thumbnails.png`,
   title = 'Alan Habibullah',
   url = '',
 }: Metatags) => {
