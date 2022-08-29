@@ -7,6 +7,7 @@ import { fadeUp } from '@/animations';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { FiSearch } from 'react-icons/fi';
+import { generateMetatags } from '@/utils/generateMetatags';
 
 const PostsIndex: NextPage = () => {
   const router = useRouter();
@@ -32,7 +33,11 @@ const PostsIndex: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Blog - Alan Habibullah</title>
+        {generateMetatags({
+          title: 'Blog - Alan Habibullah',
+          url: '/blog',
+          description: 'I write articles from time to time depending on what happen and my mood',
+        })}
       </Head>
 
       <MainTemplate

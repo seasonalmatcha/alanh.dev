@@ -5,6 +5,7 @@ import { Commentize, MarkdownPreview, XMLize } from '@/components';
 import { motion } from 'framer-motion';
 import { prisma } from '@/server/db/client';
 import { Language, Snippet } from '@prisma/client';
+import { generateMetatags } from '@/utils/generateMetatags';
 
 export const getStaticPaths = async () => {
   const slugs = await prisma.snippet.findMany({ select: { slug: true }, take: 1 });
@@ -53,7 +54,11 @@ const SnippetDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = 
   return (
     <>
       <Head>
-        <title>{snippet.title} - Alan Habibullah</title>
+        {generateMetatags({
+          title: snippet.title,
+          url: `/snippets/${snippet.slug}`,
+          description: snippet.excerpt ?? undefined,
+        })}
       </Head>
 
       <motion.div>

@@ -5,6 +5,7 @@ import { trpc } from '@/utils/trpc';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeUp } from '@/animations';
 import { useMemo } from 'react';
+import { generateMetatags } from '@/utils/generateMetatags';
 
 const BookmarksIndexPage: NextPage = () => {
   const { data: bookmarks, isLoading } = trpc.useQuery(['bookmarks.index']);
@@ -13,7 +14,11 @@ const BookmarksIndexPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Bookmarks - Alan Habibullah</title>
+        {generateMetatags({
+          title: 'Bookmarks - Alan Habibullah',
+          url: '/bookmarks',
+          description: 'A place to store website I always forget or frequently visit',
+        })}
       </Head>
 
       <MainTemplate
