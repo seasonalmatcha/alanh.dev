@@ -95,7 +95,7 @@ export const postsRouter = createRouter()
 export const protectedPostsRouter = createProtectedRouter()
   .mutation('upsert', {
     input: postSchema,
-    resolve({ ctx, input }) {
+    async resolve({ ctx, input }) {
       const postCategories = input.categories.map(({ id, name }) => ({
         where: {
           name,
@@ -106,7 +106,7 @@ export const protectedPostsRouter = createProtectedRouter()
         },
       }));
 
-      return ctx.prisma.post.upsert({
+      const data = await ctx.prisma.post.upsert({
         where: {
           id: input.id ?? '',
         },
@@ -124,6 +124,10 @@ export const protectedPostsRouter = createProtectedRouter()
           },
         },
       });
+
+      ctx.res.revalidate(`/blog/${data.slug}`);
+
+      return data;
     },
   })
   .mutation('delete', {

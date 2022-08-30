@@ -61,14 +61,18 @@ export const snippetsRouter = createRouter()
 export const protectedSnippetsRouter = createProtectedRouter()
   .mutation('upsert', {
     input: snippetSchema,
-    resolve({ ctx, input }) {
-      return ctx.prisma.snippet.upsert({
+    async resolve({ ctx, input }) {
+      const data = await ctx.prisma.snippet.upsert({
         where: {
           id: input.id ?? '',
         },
         create: input,
         update: input,
       });
+
+      ctx.res.revalidate(`/snippets/${data.slug}`);
+
+      return data;
     },
   })
   .mutation('delete', {
