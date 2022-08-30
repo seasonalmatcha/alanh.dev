@@ -10,7 +10,7 @@ const CreateLanguagePage: NextPageWithLayout = () => {
       </Head>
 
       <DashboardTemplate
-        title="Create new language"
+        title="Create new Language"
         links={[
           {
             label: 'Collections',

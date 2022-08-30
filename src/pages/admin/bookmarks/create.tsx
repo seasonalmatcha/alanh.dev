@@ -10,7 +10,7 @@ const CreateBookmarkPage: NextPageWithLayout = () => {
       </Head>
 
       <DashboardTemplate
-        title="Create new bookmark"
+        title="Create new Bookmark"
         links={[
           {
             label: 'Collections',

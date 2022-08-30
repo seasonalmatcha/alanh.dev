@@ -15,7 +15,7 @@ export const ExperienceForm = (props: IExperienceForm) => {
             value={state.title}
             onChange={updateField('title')}
             disabled={isLoading}
-            placeholder="My Snippet Title"
+            placeholder="My Experience Title"
           />
           <CharacterCounters text={state.title} max={255} className="text-right text-sm" />
           <div className="form-error">
@@ -30,7 +30,7 @@ export const ExperienceForm = (props: IExperienceForm) => {
             value={state.subtitle}
             onChange={updateField('subtitle')}
             disabled={isLoading}
-            placeholder="my-snippet"
+            placeholder="Awesome experience ..."
           />
           <CharacterCounters text={state.subtitle} max={1024} className="text-right text-sm" />
           <div className="form-error">
@@ -46,7 +46,7 @@ export const ExperienceForm = (props: IExperienceForm) => {
             onChange={updateField('description')}
             textAreaProps={{
               disabled: isLoading,
-              placeholder: '#Hello world!',
+              placeholder: '# Hello world!',
             }}
           />
           <CharacterCounters text={state.description} className="text-right text-sm" />

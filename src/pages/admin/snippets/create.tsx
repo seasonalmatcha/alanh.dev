@@ -10,7 +10,7 @@ const CreateSnippetPage: NextPageWithLayout = () => {
       </Head>
 
       <DashboardTemplate
-        title="Create new snippet"
+        title="Create new Snippet"
         links={[
           {
             label: 'Collections',
