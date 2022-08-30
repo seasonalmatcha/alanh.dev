@@ -1,13 +1,9 @@
 import { Footer, Navbar } from '@/components';
-import { FC, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-export interface IAuthLayoutProps {
-  children: ReactNode;
-}
-
-export const AuthLayout: FC<IAuthLayoutProps> = ({ children }) => {
+export const AuthLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const { status } = useSession({
     required: true,
