@@ -1,5 +1,5 @@
 import { fadeUp } from '@/animations';
-import { AwaitText, Commentize, InView, Section } from '@/components';
+import { AwaitText, ExperienceCard, InView, Section } from '@/components';
 import { trpc } from '@/utils/trpc';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMemo } from 'react';
@@ -25,9 +25,7 @@ export const ExperienceSection = () => {
                   animate="show"
                 >
                   <li>
-                    <h5 className="experience-title">{experience.title}</h5>
-                    <span className="text-sm">{experience.subtitle}</span>
-                    <Commentize text={experience.description} />
+                    <ExperienceCard {...experience} />
                   </li>
                 </InView>
               ))}

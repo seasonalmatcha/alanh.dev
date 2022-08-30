@@ -1,16 +1,14 @@
-import { ISnippet } from '@/types';
 import { motion, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { bounceAnimation } from '@/animations';
+import { Language, Snippet } from '@prisma/client';
 
-export type ISnippetCardProps = Pick<
-  ISnippet,
-  'id' | 'excerpt' | 'logo' | 'slug' | 'title' | 'language'
-> & {
-  bounce?: boolean;
+export type ISnippetCardProps = Pick<Snippet, 'id' | 'excerpt' | 'logo' | 'slug' | 'title'> & {
+  language: Omit<Language, 'createdAt' | 'updatedAt'> | null;
+  bounce: boolean;
 };
 
 export const SnippetCard = ({
