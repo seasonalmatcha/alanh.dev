@@ -1,7 +1,8 @@
 import { postSchema } from '@/schemas';
 import { trpc } from '@/utils/trpc';
-import { ChangeEvent, useReducer, useState } from 'react';
+import { ChangeEvent, useEffect, useReducer, useState } from 'react';
 import { inferFormattedError } from 'zod';
+import slugify from 'slugify';
 
 enum ActionType {
   ADD_CATEGORY,
@@ -108,6 +109,17 @@ export const usePostForm = ({ initialState = defaultState }: IPostForm) => {
       },
     });
   };
+
+  useEffect(() => {
+    dispatch({
+      type: ActionType.UPDATE_VALUE,
+      key: 'slug',
+      value: slugify(state.title, {
+        lower: true,
+        strict: true,
+      }),
+    });
+  }, [state.title]);
 
   return {
     fieldErrors,
