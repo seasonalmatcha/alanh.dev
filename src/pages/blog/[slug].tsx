@@ -70,6 +70,7 @@ const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ 
           title: post.title,
           url: `/blog/${post.slug}`,
           description: post.excerpt ?? undefined,
+          thumbnails: post.thumbnail ?? undefined,
         })}
       </Head>
 
