@@ -1,5 +1,6 @@
 {
   "name": "alanh-dev",
+  "sideEffects": false,
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -40,6 +41,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@next/bundle-analyzer": "^12.2.5",
     "@tailwindcss/typography": "^0.5.4",
     "@types/node": "18.7.8",
     "@types/react": "18.0.17",

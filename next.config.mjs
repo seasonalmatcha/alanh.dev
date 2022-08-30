@@ -1,5 +1,6 @@
 import { env } from './src/env/server.mjs';
 import { withSuperjson } from 'next-superjson';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 /**
  * @template {import('next').NextConfig} T
@@ -10,12 +11,17 @@ function defineNextConfig(config) {
   return config;
 }
 
-export default withSuperjson()(
-  defineNextConfig({
-    reactStrictMode: true,
-    swcMinify: true,
-    images: {
-      domains: ['picsum.photos', 'res.cloudinary.com', 'techblog.revivaltv.id'],
-    },
-  }),
+export default withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+  openAnalyzer: true,
+})(
+  withSuperjson()(
+    defineNextConfig({
+      reactStrictMode: true,
+      swcMinify: true,
+      images: {
+        domains: ['picsum.photos', 'res.cloudinary.com', 'techblog.revivaltv.id'],
+      },
+    }),
+  ),
 );
