@@ -3,25 +3,32 @@ import { withSuperjson } from 'next-superjson';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 
 /**
- * @template {import('next').NextConfig} T
- * @param {T} config - A generic parameter that flows through to the return type
- * @constraint {{import('next').NextConfig}}
+ *
+ * @param {((config: import('next').NextConfig) => import('next').NextConfig)[]} plugins
+ * @param {import('next').NextConfig} config
+ * @returns {import('next').NextConfig}
  */
-function defineNextConfig(config) {
-  return config;
-}
+const withPlugins = (plugins, config) => {
+  return plugins.reduce((configPhase, plugin) => {
+    return plugin(configPhase);
+  }, config);
+};
 
-export default withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-  openAnalyzer: true,
-})(
-  withSuperjson()(
-    defineNextConfig({
-      reactStrictMode: true,
-      swcMinify: true,
-      images: {
-        domains: ['picsum.photos', 'res.cloudinary.com', 'techblog.revivaltv.id'],
-      },
-    }),
-  ),
-);
+const plugins = [
+  withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true', openAnalyzer: true }),
+  withSuperjson(),
+];
+
+/**
+ *
+ * @type {import('next').NextConfig}
+ */
+const config = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['picsum.photos', 'res.cloudinary.com', 'techblog.revivaltv.id'],
+  },
+};
+
+export default withPlugins(plugins, config);
