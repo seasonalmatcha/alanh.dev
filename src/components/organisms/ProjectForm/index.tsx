@@ -14,7 +14,7 @@ export const ProjectForm = (props: IProjectForm) => {
             value={state.title}
             onChange={updateField('title')}
             disabled={isLoading}
-            placeholder="My Snippet Title"
+            placeholder="My Project Title"
           />
           <CharacterCounters text={state.title} max={255} className="text-right text-sm" />
           <div className="form-error">
@@ -29,7 +29,7 @@ export const ProjectForm = (props: IProjectForm) => {
             value={state.href}
             onChange={updateField('href')}
             disabled={isLoading}
-            placeholder="my-snippet"
+            placeholder="https://..."
           />
           <CharacterCounters text={state.href} max={1024} className="text-right text-sm" />
           <div className="form-error">
@@ -45,7 +45,7 @@ export const ProjectForm = (props: IProjectForm) => {
             onChange={updateField('description')}
             textAreaProps={{
               disabled: isLoading,
-              placeholder: '#Hello world!',
+              placeholder: '# Hello world!',
             }}
           />
           <CharacterCounters text={state.description} className="text-right text-sm" />

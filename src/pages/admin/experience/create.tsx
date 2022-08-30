@@ -10,7 +10,7 @@ const CreateExperiencePage: NextPageWithLayout = () => {
       </Head>
 
       <DashboardTemplate
-        title="Create new experience"
+        title="Create new Experience"
         links={[
           {
             label: 'Collections',

@@ -10,7 +10,7 @@ const CreateProjectPage: NextPageWithLayout = () => {
       </Head>
 
       <DashboardTemplate
-        title="Create new project"
+        title="Create new Project"
         links={[
           {
             label: 'Collections',

@@ -67,7 +67,7 @@ export const PostForm = (props: IPostForm) => {
             onChange={updateField('content')}
             textAreaProps={{
               disabled: isLoading,
-              placeholder: '#Hello world!',
+              placeholder: '# Hello world!',
             }}
           />
           <CharacterCounters text={state.content} className="text-right text-sm" />

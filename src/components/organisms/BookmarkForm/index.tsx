@@ -14,7 +14,7 @@ export const BookmarkForm = (props: IBookmarkForm) => {
             value={state.title}
             onChange={updateField('title')}
             disabled={isLoading}
-            placeholder="My Snippet Title"
+            placeholder="My Bookmark Title"
           />
           <CharacterCounters text={state.title} max={255} className="text-right text-sm" />
           <div className="form-error">
@@ -29,7 +29,7 @@ export const BookmarkForm = (props: IBookmarkForm) => {
             value={state.url}
             onChange={updateField('url')}
             disabled={isLoading}
-            placeholder="my-snippet"
+            placeholder="https://..."
           />
           <CharacterCounters text={state.url} max={1024} className="text-right text-sm" />
           <div className="form-error">
@@ -44,7 +44,7 @@ export const BookmarkForm = (props: IBookmarkForm) => {
             value={state.urlText}
             onChange={updateField('urlText')}
             disabled={isLoading}
-            placeholder="my-snippet"
+            placeholder="My important bookmark"
           />
           <CharacterCounters text={state.urlText} max={255} className="text-right text-sm" />
           <div className="form-error">
@@ -59,7 +59,7 @@ export const BookmarkForm = (props: IBookmarkForm) => {
             value={state.excerpt}
             onChange={updateField('excerpt')}
             disabled={isLoading}
-            placeholder="Snippet's short description"
+            placeholder="Bookmark's short description"
           />
           <CharacterCounters text={state.excerpt} max={255} className="text-right text-sm" />
           <div className="form-error">

@@ -10,7 +10,7 @@ const CreatePostPage: NextPageWithLayout = () => {
       </Head>
 
       <DashboardTemplate
-        title="Create New Post"
+        title="Create new Post"
         links={[
           {
             label: 'Collections',
