@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint .",
     "prepare": "husky install",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "postbuild": "next-sitemap  --config next-sitemap.config.mjs"
   },
   "prisma": {
     "seed": "node prisma/seed/index.mjs"
@@ -26,6 +27,7 @@
     "framer-motion": "^7.2.1",
     "next": "12.2.5",
     "next-auth": "^4.10.3",
+    "next-sitemap": "^3.1.21",
     "next-superjson": "^0.0.4",
     "next-themes": "^0.2.0",
     "react": "18.2.0",
@@ -35,6 +37,7 @@
     "react-query": "^3.39.2",
     "rehype-highlight": "^5.0.2",
     "remark-gfm": "^3.0.1",
+    "rss": "^1.2.2",
     "slugify": "^1.6.5",
     "superjson": "^1.9.1",
     "zod": "^3.18.0"
@@ -47,6 +50,7 @@
     "@types/node": "18.7.8",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
+    "@types/rss": "^0.0.29",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
     "autoprefixer": "^10.4.8",
