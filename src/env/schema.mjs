@@ -11,6 +11,7 @@ export const serverSchema = z.object({
 
 export const clientSchema = z.object({
   // NEXT_PUBLIC_FOO: z.string()
+  NEXT_PUBLIC_SITE_URL: z.string(),
 });
 
 /**
@@ -19,4 +20,5 @@ export const clientSchema = z.object({
 
 export const clientEnv = {
   // NEXT_PUBLIC_FOO: process.env.NEXT_PUBLIC_FOO
+  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
 };
