@@ -48,17 +48,19 @@ const PostsByCategoryPage: NextPage = () => {
           {isLoading ? (
             <AwaitText text="myArticles" />
           ) : (
-            posts?.map((post, i) => (
-              <motion.div
-                key={i}
-                variants={fadeAnimation}
-                initial="hidden"
-                animate="show"
-                layoutId={`${post.id}`}
-              >
-                <PostCard {...post} bounce={i === fetchingIndex} />
-              </motion.div>
-            ))
+            <>
+              {posts?.map((post, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeAnimation}
+                  initial="hidden"
+                  animate="show"
+                  layoutId={`${post.id}`}
+                >
+                  <PostCard {...post} bounce={i === fetchingIndex} />
+                </motion.div>
+              ))}
+            </>
           )}
         </div>
       </MainTemplate>
