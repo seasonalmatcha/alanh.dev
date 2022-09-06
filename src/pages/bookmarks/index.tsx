@@ -30,16 +30,18 @@ const BookmarksIndexPage: NextPage = () => {
             {isLoading ? (
               <AwaitText text="myBookmarks" />
             ) : (
-              bookmarks?.map((bookmark) => (
-                <motion.div
-                  key={bookmark.id}
-                  variants={fadeUpAnimation}
-                  initial="hidden"
-                  animate="show"
-                >
-                  <BookmarkCard {...bookmark} />
-                </motion.div>
-              ))
+              <>
+                {bookmarks?.map((bookmark) => (
+                  <motion.div
+                    key={bookmark.id}
+                    variants={fadeUpAnimation}
+                    initial="hidden"
+                    animate="show"
+                  >
+                    <BookmarkCard {...bookmark} />
+                  </motion.div>
+                ))}
+              </>
             )}
           </AnimatePresence>
         </div>

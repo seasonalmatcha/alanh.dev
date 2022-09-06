@@ -51,17 +51,19 @@ const Snippets: NextPage = () => {
             {isLoading ? (
               <AwaitText text="mySnippets" />
             ) : (
-              snippets?.map((snippet, i) => (
-                <motion.div
-                  variants={fadeAnimation}
-                  initial="hidden"
-                  animate="show"
-                  key={i}
-                  layoutId={`${snippet.id}`}
-                >
-                  <SnippetCard {...snippet} bounce={i === fetchingIndex} />
-                </motion.div>
-              ))
+              <>
+                {snippets?.map((snippet, i) => (
+                  <motion.div
+                    variants={fadeAnimation}
+                    initial="hidden"
+                    animate="show"
+                    key={i}
+                    layoutId={`${snippet.id}`}
+                  >
+                    <SnippetCard {...snippet} bounce={i === fetchingIndex} />
+                  </motion.div>
+                ))}
+              </>
             )}
           </AnimatePresence>
         </div>
