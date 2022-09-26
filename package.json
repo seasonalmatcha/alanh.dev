@@ -39,7 +39,7 @@
     "remark-gfm": "^3.0.1",
     "rss": "^1.2.2",
     "slugify": "^1.6.5",
-    "superjson": "^1.9.1",
+    "superjson": "^1.10.0",
     "zod": "^3.18.0"
   },
   "devDependencies": {
