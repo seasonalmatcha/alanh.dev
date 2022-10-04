@@ -47,7 +47,7 @@
     "@commitlint/config-conventional": "^17.1.0",
     "@next/bundle-analyzer": "^12.3.1",
     "@tailwindcss/typography": "^0.5.4",
-    "@types/node": "18.7.18",
+    "@types/node": "18.8.2",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
     "@types/rss": "^0.0.29",
