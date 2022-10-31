@@ -22,7 +22,7 @@
     "@trpc/next": "^9.27.1",
     "@trpc/react": "^9.27.1",
     "@trpc/server": "^9.27.1",
-    "argon2": "^0.29.1",
+    "argon2": "^0.30.1",
     "classnames": "^2.3.2",
     "framer-motion": "^7.3.6",
     "next": "12.3.1",
