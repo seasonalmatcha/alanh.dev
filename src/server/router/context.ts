@@ -4,6 +4,7 @@ import { prisma } from '@/server/db/client';
 import { Session, unstable_getServerSession as getServerSession } from 'next-auth';
 import { authOptions as nextAuthOptions } from '@/pages/api/auth/[...nextauth]';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { sparkpost } from '@/server/mailing/client';
 
 type CreateContextOptions = {
   session: Session | null;
@@ -12,7 +13,7 @@ type CreateContextOptions = {
 };
 
 export const createContextInner = async (opts: CreateContextOptions) => {
-  return { prisma, session: opts.session, req: opts.req, res: opts.res };
+  return { prisma, sparkpost, session: opts.session, req: opts.req, res: opts.res };
 };
 
 export const createContext = async (opts: trpcNext.CreateNextContextOptions) => {

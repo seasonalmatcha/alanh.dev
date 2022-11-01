@@ -7,6 +7,9 @@ export const serverSchema = z.object({
   HASH_SECRET: z.string(),
   NEXTAUTH_SECRET: z.string(),
   NEXTAUTH_URL: z.string(),
+  SPARKPOST_API_KEY: z.string(),
+  SPARKPOST_EMAIL_ADDRESS: z.string(),
+  SPARKPOST_EMAIL_TARGET: z.string(),
 });
 
 export const clientSchema = z.object({

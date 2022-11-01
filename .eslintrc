@@ -12,7 +12,7 @@
   },
   "overrides": [
     {
-      "files": ["next.config.mjs", "./src/server/db/client.ts"],
+      "files": ["next.config.mjs", "./src/server/db/client.ts", "./src/server/mailing/client.ts"],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",
         "no-var": "off"
