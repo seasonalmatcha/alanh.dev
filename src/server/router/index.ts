@@ -7,6 +7,7 @@ import { experiencesRouter, protectedExperiencesRouter } from './experiences-rou
 import { languagesRouter, protectedLanguagesRouter } from './languages-router';
 import { postsRouter, protectedPostsRouter } from './posts-router';
 import { bookmarksRouter, protectedBookmarksRouter } from './bookmarks-router';
+import { contactRouter } from './contact-router';
 /**
  * I'll keep it just in case
  */
@@ -25,7 +26,8 @@ export const appRouter = createRouter()
   .merge('posts.', postsRouter)
   .merge('protected.posts.', protectedPostsRouter)
   .merge('bookmarks.', bookmarksRouter)
-  .merge('protected.bookmarks.', protectedBookmarksRouter);
+  .merge('protected.bookmarks.', protectedBookmarksRouter)
+  .merge('contacts.', contactRouter);
 // .merge('users', usersRouter);
 
 export type AppRouter = typeof appRouter;
