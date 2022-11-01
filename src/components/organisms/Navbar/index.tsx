@@ -25,6 +25,10 @@ const links = [
     label: 'Blog',
     href: '/blog',
   },
+  {
+    label: 'Contact',
+    href: '/contact',
+  },
 ];
 
 export const Navbar = () => {
