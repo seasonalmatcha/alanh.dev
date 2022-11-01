@@ -9,8 +9,6 @@ import superjson from 'superjson';
 import { AnimatePresence } from 'framer-motion';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
-import { env } from '@/env/client.mjs';
 
 interface AppPropsWithLayout extends AppProps {
   Component: NextPageWithLayout;
@@ -25,15 +23,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }: AppPropsWith
   return (
     <SessionProvider session={session}>
       <ThemeProvider attribute="class" defaultTheme="dark">
-        <GoogleReCaptchaProvider
-          reCaptchaKey={env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY}
-          scriptProps={{
-            defer: true,
-            appendTo: 'head',
-          }}
-        >
-          <AnimatePresence>{getLayout(<Component {...pageProps} />)}</AnimatePresence>
-        </GoogleReCaptchaProvider>
+        <AnimatePresence>{getLayout(<Component {...pageProps} />)}</AnimatePresence>
       </ThemeProvider>
     </SessionProvider>
   );
