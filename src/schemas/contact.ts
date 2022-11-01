@@ -6,6 +6,7 @@ export const messageSchema = z.object({
   message: z
     .string({ required_error: 'Please provide the message' })
     .min(1, { message: 'Please provide the message' }),
+  recaptchaToken: z.string().optional(),
 });
 
 export type MessageSchemaErrorType = z.inferFormattedError<typeof messageSchema>;
