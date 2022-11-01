@@ -10,7 +10,9 @@ export const ExperienceCard = ({ subtitle, title, description }: IExperienceCard
     <>
       <h5 className="experience-title">{title}</h5>
       <span className="text-sm">{subtitle}</span>
-      <Commentize text={description} />
+      <div className="mt-2">
+        <Commentize text={description} />
+      </div>
     </>
   );
 };
