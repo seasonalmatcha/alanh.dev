@@ -48,6 +48,10 @@ const linksGroup: Links[][] = [
       label: 'Source Code',
       isExternal: true,
     },
+    {
+      href: '/contact',
+      label: 'Contact',
+    },
   ],
 ];
 
