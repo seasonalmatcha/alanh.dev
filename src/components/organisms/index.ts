@@ -7,3 +7,4 @@ export * from './BookmarkForm';
 export * from './LanguageForm';
 export * from './ExperienceForm';
 export * from './ProjectForm';
+export * from './ContactForm';
