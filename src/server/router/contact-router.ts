@@ -37,7 +37,7 @@ export const contactRouter = createRouter().mutation('index', {
         });
       }
 
-      ctx.sparkpost.transmissions.send({
+      await ctx.sparkpost.transmissions.send({
         content: {
           from: env.SPARKPOST_EMAIL_ADDRESS,
           subject: 'Message Received!',
