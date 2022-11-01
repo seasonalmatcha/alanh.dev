@@ -38,6 +38,7 @@ specifiers:
   prisma: ^4.5.0
   react: 18.2.0
   react-dom: 18.2.0
+  react-google-recaptcha-v3: ^1.10.0
   react-icons: ^4.6.0
   react-markdown: ^8.0.3
   react-query: ^3.39.2
@@ -68,6 +69,7 @@ dependencies:
   next-themes: 0.2.1_azq6kxkn3od7qdylwkyksrwopy
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-google-recaptcha-v3: 1.10.0_biqbaboplfbrettd7655fr4n2y
   react-icons: 4.6.0_react@18.2.0
   react-markdown: 8.0.3_iapumuv4e6jcjznwuxpf4tt22e
   react-query: 3.39.2_biqbaboplfbrettd7655fr4n2y
@@ -4590,6 +4592,17 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-google-recaptcha-v3/1.10.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-JBoqU107X8klQmS8tQSbQh1IMsT1fH3kVoArIqnia0rtn0rPNG9Ld+9rD/dHJMculIczSZpGvIJTXXwtsolMcg==}
+    peerDependencies:
+      react: ^17.0 || ^18.0
+      react-dom: ^17.0 || ^18.0
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-icons/4.6.0_react@18.2.0:

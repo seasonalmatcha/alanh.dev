@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import { messageSchema, MessageSchemaErrorType } from '@/schemas';
 import { trpc } from '@/utils/trpc';
@@ -6,8 +7,9 @@ import { trpc } from '@/utils/trpc';
 export const useContactForm = () => {
   const [formErrors, setFormErrors] = useState<MessageSchemaErrorType>();
   const { mutate, isLoading, isError, isSuccess, reset } = trpc.useMutation(['contacts.index']);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     reset();
 
@@ -37,7 +39,8 @@ export const useContactForm = () => {
       return;
     }
 
-    mutate(validate.data);
+    const recaptchaToken = await executeRecaptcha?.('enquiryFormSubmit');
+    mutate({ ...validate.data, recaptchaToken });
   };
 
   return {

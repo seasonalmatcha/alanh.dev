@@ -10,11 +10,13 @@ export const serverSchema = z.object({
   SPARKPOST_API_KEY: z.string(),
   SPARKPOST_EMAIL_ADDRESS: z.string(),
   SPARKPOST_EMAIL_TARGET: z.string(),
+  GOOGLE_RECAPTCHA_SECRET: z.string(),
 });
 
 export const clientSchema = z.object({
   // NEXT_PUBLIC_FOO: z.string()
   NEXT_PUBLIC_SITE_URL: z.string(),
+  NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY: z.string(),
 });
 
 /**
@@ -24,4 +26,5 @@ export const clientSchema = z.object({
 export const clientEnv = {
   // NEXT_PUBLIC_FOO: process.env.NEXT_PUBLIC_FOO
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+  NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY: process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY,
 };
