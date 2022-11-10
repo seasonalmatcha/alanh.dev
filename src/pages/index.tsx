@@ -1,17 +1,16 @@
 import { NextPage } from 'next';
-import Head from 'next/head';
-import { ExperienceSection, IntroSection, ProjectSection, ToolStackSection } from '@/components';
-import { generateMetatags } from '@/utils/generateMetatags';
+import {
+  ExperienceSection,
+  IntroSection,
+  Meta,
+  ProjectSection,
+  ToolStackSection,
+} from '@/components';
 
 const Home: NextPage = () => {
   return (
     <>
-      <Head>
-        {generateMetatags({
-          title: 'Alan Habibullah',
-          url: '/',
-        })}
-      </Head>
+      <Meta title="Alan Habibullah" url="/" />
 
       <div className="flex flex-col space-y-10 lg:space-y-24">
         <IntroSection />
