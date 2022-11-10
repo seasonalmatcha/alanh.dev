@@ -1,12 +1,10 @@
-import { AwaitText, MainTemplate, PostCard } from '@/components';
+import { AwaitText, MainTemplate, Meta, PostCard } from '@/components';
 import { NextPage } from 'next';
-import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/animations';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
-import { generateMetatags } from '@/utils/generateMetatags';
 
 const PostsByCategoryPage: NextPage = () => {
   const router = useRouter();
@@ -35,13 +33,11 @@ const PostsByCategoryPage: NextPage = () => {
 
   return (
     <>
-      <Head>
-        {generateMetatags({
-          title: 'Blog - Alan Habibullah',
-          url: `/categories/${categoryName}`,
-          description: `See article related to ${categoryName}`,
-        })}
-      </Head>
+      <Meta
+        title="Blog - Alan Habibullah"
+        url={`/categories/${categoryName}`}
+        description={`See article related to ${categoryName}`}
+      />
 
       <MainTemplate title={`Post category: ${categoryName}`}>
         <div className="flex flex-col space-y-8 mt-10">

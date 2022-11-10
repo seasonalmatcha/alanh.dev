@@ -1,11 +1,9 @@
-import { AwaitText, BookmarkCard, MainTemplate } from '@/components';
+import { AwaitText, BookmarkCard, MainTemplate, Meta } from '@/components';
 import { NextPage } from 'next';
-import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeUp } from '@/animations';
 import { useMemo } from 'react';
-import { generateMetatags } from '@/utils/generateMetatags';
 
 const BookmarksIndexPage: NextPage = () => {
   const { data: bookmarks, isLoading } = trpc.useQuery(['bookmarks.index']);
@@ -13,13 +11,11 @@ const BookmarksIndexPage: NextPage = () => {
 
   return (
     <>
-      <Head>
-        {generateMetatags({
-          title: 'Bookmarks - Alan Habibullah',
-          url: '/bookmarks',
-          description: 'A place to store website I always forget or frequently visit',
-        })}
-      </Head>
+      <Meta
+        title="Bookmarks - Alan Habibullah"
+        url="/bookmarks"
+        description="A place to store website I always forget or frequently visit"
+      />
 
       <MainTemplate
         title="Bookmarks"

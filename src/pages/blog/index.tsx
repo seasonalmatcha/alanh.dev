@@ -1,13 +1,11 @@
-import { AwaitText, MainTemplate, PostCard } from '@/components';
+import { AwaitText, MainTemplate, Meta, PostCard } from '@/components';
 import { NextPage } from 'next';
-import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeUp } from '@/animations';
 import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { FiSearch } from 'react-icons/fi';
-import { generateMetatags } from '@/utils/generateMetatags';
 import { useDebounce } from '@/hooks';
 
 const PostsIndex: NextPage = () => {
@@ -54,13 +52,11 @@ const PostsIndex: NextPage = () => {
 
   return (
     <>
-      <Head>
-        {generateMetatags({
-          title: 'Blog - Alan Habibullah',
-          url: '/blog',
-          description: 'I write articles from time to time depending on what happen and my mood',
-        })}
-      </Head>
+      <Meta
+        title="Blog - Alan Habibullah"
+        url="/blog"
+        description="I write articles from time to time depending on what happen and my mood"
+      />
 
       <MainTemplate
         title="Blog"

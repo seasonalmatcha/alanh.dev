@@ -1,14 +1,12 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import Head from 'next/head';
 import Image from 'next/image';
-import { MarkdownPreview, XMLize } from '@/components';
+import { MarkdownPreview, Meta, XMLize } from '@/components';
 import { motion } from 'framer-motion';
 import { prisma } from '@/server/db/client';
 import { Category, Post } from '@prisma/client';
 import { trpc } from '@/utils/trpc';
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { generateMetatags } from '@/utils/generateMetatags';
 
 export const getStaticPaths = async () => {
   const slugs = await prisma.post.findMany({ select: { slug: true }, take: 1 });
@@ -65,14 +63,12 @@ const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ 
 
   return (
     <>
-      <Head>
-        {generateMetatags({
-          title: post.title,
-          url: `/blog/${post.slug}`,
-          description: post.excerpt ?? undefined,
-          thumbnails: post.thumbnail ?? undefined,
-        })}
-      </Head>
+      <Meta
+        title={post.title}
+        url={`/blog/${post.slug}`}
+        description={post.excerpt ?? undefined}
+        thumbnails={post.thumbnail ?? undefined}
+      />
 
       {post.thumbnail && (
         <div className="relative w-full aspect-video overflow-hidden mb-4">
