@@ -13,7 +13,7 @@ export const ContactForm = () => {
   }, [isSuccess, isError]);
 
   return (
-    <form onSubmit={submit} noValidate>
+    <form onSubmit={submit} ref={formRef} noValidate>
       {isSuccess && (
         <motion.div
           className="bg-teal-600 px-4 py-2 rounded-md text-white mb-6"
