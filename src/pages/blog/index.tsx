@@ -4,10 +4,11 @@ import Head from 'next/head';
 import { trpc } from '@/utils/trpc';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeUp } from '@/animations';
-import { useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { FiSearch } from 'react-icons/fi';
 import { generateMetatags } from '@/utils/generateMetatags';
+import { useDebounce } from '@/hooks';
 
 const PostsIndex: NextPage = () => {
   const router = useRouter();
@@ -15,6 +16,27 @@ const PostsIndex: NextPage = () => {
   const { data: posts, isLoading } = trpc.useQuery(['posts.index', { query }]);
   const [fetchingIndex, setFetchingIndex] = useState<number | undefined>(undefined);
   const fadeAnimation = useMemo(() => fadeUp(), []);
+  const [updateQuery] = useDebounce((e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(() => e.target.value);
+  }, 500);
+  const typingTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const [isTyping, setIsTyping] = useState(false);
+  const handleOnTyping = useCallback(() => {
+    if (typingTimeout.current) {
+      clearTimeout(typingTimeout.current);
+    }
+
+    setIsTyping(() => true);
+
+    typingTimeout.current = setTimeout(() => {
+      setIsTyping(() => false);
+    }, 3000);
+  }, []);
+
+  useEffect(() => {
+    setIsTyping(() => false);
+  }, [posts]);
 
   useEffect(() => {
     const handler = (...args: string[]) => {
@@ -58,14 +80,15 @@ const PostsIndex: NextPage = () => {
           <input
             placeholder="Search article ..."
             className="w-full !pl-10"
-            onChange={({ target }) => setQuery(target.value)}
+            onChange={updateQuery}
+            onInput={handleOnTyping}
           />
           <FiSearch className="absolute top-1/2 left-2 -translate-y-1/2 w-5 h-5" />
         </motion.div>
 
         <div className="flex flex-col space-y-8 mt-10">
           <AnimatePresence mode="wait">
-            {isLoading ? (
+            {isLoading || isTyping ? (
               <AwaitText text="myArticles" />
             ) : (
               <>
