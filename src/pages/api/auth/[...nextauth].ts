@@ -6,6 +6,7 @@ import { prisma } from '@/server/db/client';
 import { env } from '@/env/server.mjs';
 import { TRPCError } from '@trpc/server';
 import { signInSchema } from '@/schemas';
+import { omitObject } from '@/utils/omitObject';
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
@@ -79,7 +80,7 @@ export const authOptions: NextAuthOptions = {
             return null;
           }
 
-          return user;
+          return omitObject(user, ['password']);
         } catch (error) {
           throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
         }
