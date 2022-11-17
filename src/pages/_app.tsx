@@ -21,7 +21,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }: AppPropsWith
   const getLayout = Component.getLayout || ((page) => <MainLayout>{page}</MainLayout>);
 
   return (
-    <SessionProvider session={session}>
+    <SessionProvider session={session} refetchOnWindowFocus={false}>
       <ThemeProvider attribute="class" defaultTheme="dark">
         <AnimatePresence>{getLayout(<Component {...pageProps} />)}</AnimatePresence>
       </ThemeProvider>
@@ -42,6 +42,14 @@ export default withTRPC<AppRouter>({
     return {
       url,
       transformer: superjson,
+      queryClientConfig: {
+        defaultOptions: {
+          queries: {
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+          },
+        },
+      },
     };
   },
   ssr: false,
