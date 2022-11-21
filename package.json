@@ -25,6 +25,7 @@
     "argon2": "^0.30.1",
     "classnames": "^2.3.2",
     "framer-motion": "^7.3.6",
+    "mdast-util-to-string": "^3.1.0",
     "next": "12.3.1",
     "next-auth": "^4.13.0",
     "next-sitemap": "^3.1.29",
