@@ -5,12 +5,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && pnpm postbuild",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "prepare": "husky install",
     "postinstall": "prisma generate",
-    "postbuild": "next-sitemap  --config next-sitemap.config.mjs"
+    "postbuild": "next-sitemap --config next-sitemap.config.mjs"
   },
   "prisma": {
     "seed": "node prisma/seed/index.mjs"
