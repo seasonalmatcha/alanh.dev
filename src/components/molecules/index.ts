@@ -3,6 +3,7 @@ export * from './Commentize';
 export * from './InView';
 export * from './Section';
 export * from './XMLize';
+export * from './MarkdownCode';
 export * from './MarkdownPreview';
 export * from './CharacterCount';
 export * from './Breadcrumb';
