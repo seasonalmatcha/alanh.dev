@@ -19,6 +19,10 @@ export const MarkdownCode = ({ node, ...props }: CodeProps) => {
     }, 2000);
   };
 
+  if (!node.properties?.className) {
+    return <code {...props} />;
+  }
+
   return (
     <div className="relative group">
       <div className="absolute top-0 right-0 flex flex-col items-end gap-2">
