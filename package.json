@@ -52,7 +52,7 @@
     "@tailwindcss/typography": "^0.5.7",
     "@types/node": "18.8.2",
     "@types/react": "18.0.21",
-    "@types/react-dom": "18.0.6",
+    "@types/react-dom": "18.0.9",
     "@types/rss": "^0.0.29",
     "@types/sparkpost": "^2.1.5",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
