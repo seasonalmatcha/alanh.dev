@@ -37,7 +37,7 @@
     "react-icons": "^4.6.0",
     "react-markdown": "^8.0.3",
     "react-query": "^3.39.2",
-    "rehype-highlight": "^5.0.2",
+    "rehype-highlight": "^6.0.0",
     "remark-gfm": "^3.0.1",
     "rss": "^1.2.2",
     "slugify": "^1.6.5",
