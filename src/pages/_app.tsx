@@ -9,6 +9,7 @@ import superjson from 'superjson';
 import { AnimatePresence } from 'framer-motion';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
+import { Analytics } from '@vercel/analytics/react';
 
 interface AppPropsWithLayout extends AppProps {
   Component: NextPageWithLayout;
@@ -21,11 +22,14 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }: AppPropsWith
   const getLayout = Component.getLayout || ((page) => <MainLayout>{page}</MainLayout>);
 
   return (
-    <SessionProvider session={session} refetchOnWindowFocus={false}>
-      <ThemeProvider attribute="class" defaultTheme="dark">
-        <AnimatePresence>{getLayout(<Component {...pageProps} />)}</AnimatePresence>
-      </ThemeProvider>
-    </SessionProvider>
+    <>
+      <SessionProvider session={session} refetchOnWindowFocus={false}>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <AnimatePresence>{getLayout(<Component {...pageProps} />)}</AnimatePresence>
+        </ThemeProvider>
+      </SessionProvider>
+      <Analytics />
+    </>
   );
 };
 
