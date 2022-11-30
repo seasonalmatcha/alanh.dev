@@ -1,7 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": ["plugin:@typescript-eslint/recommended", "next", "next/core-web-vitals"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": "error",
     "prefer-const": "error",
