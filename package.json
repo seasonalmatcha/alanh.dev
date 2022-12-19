@@ -44,7 +44,7 @@
     "slugify": "^1.6.5",
     "sparkpost": "^2.1.4",
     "superjson": "^1.10.0",
-    "zod": "^3.19.1"
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
