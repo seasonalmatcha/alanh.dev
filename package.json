@@ -56,7 +56,7 @@
     "@types/react-dom": "18.0.10",
     "@types/rss": "^0.0.29",
     "@types/sparkpost": "^2.1.5",
-    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.45.0",
     "autoprefixer": "^10.4.8",
     "eslint": "8.29.0",
