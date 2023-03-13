@@ -24,7 +24,7 @@ export const PostCard = ({ slug, title, excerpt, bounce }: IPostCardProps) => {
 
   return (
     <Link href={`/blog/${slug}`} passHref>
-      <motion.a
+      <motion.div
         animate={controls}
         className={classNames('group block', bounce ? 'focus:ring-0' : '')}
       >
@@ -39,7 +39,7 @@ export const PostCard = ({ slug, title, excerpt, bounce }: IPostCardProps) => {
             <AiOutlineLoading3Quarters className="animate-spin" />
           </motion.span>
         )}
-      </motion.a>
+      </motion.div>
     </Link>
   );
 };

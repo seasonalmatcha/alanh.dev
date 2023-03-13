@@ -67,14 +67,12 @@ const AdminPostIndexPage: NextPageWithLayout = () => {
               key={post.id}
               className="border rounded p-2 flex justify-between"
             >
-              <Link href={`/blog/${post.slug}`} passHref>
-                <a className="link-secondary w-full">{post.title}</a>
+              <Link href={`/blog/${post.slug}`} passHref className="link-secondary w-full">
+                {post.title}
               </Link>
               <div className="flex items-center space-x-2">
-                <Link href={`/admin/blog/edit/${post.id}`} passHref>
-                  <a className="btn-action primary">
-                    <FiEdit />
-                  </a>
+                <Link href={`/admin/blog/edit/${post.id}`} passHref className="btn-action primary">
+                  <FiEdit />
                 </Link>
                 <button
                   className="btn-action danger"

@@ -72,10 +72,12 @@ const AdminExperiencePage: NextPageWithLayout = () => {
                 <span>{experience.title}</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Link href={`/admin/experience/edit/${experience.id}`} passHref>
-                  <a className="btn-action primary">
-                    <FiEdit />
-                  </a>
+                <Link
+                  href={`/admin/experience/edit/${experience.id}`}
+                  passHref
+                  className="btn-action primary"
+                >
+                  <FiEdit />
                 </Link>
                 <button
                   className="btn-action danger"

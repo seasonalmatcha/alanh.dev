@@ -23,11 +23,9 @@ export const DashboardTemplate = ({
 
       {actionAddPath && (
         <div className="text-right mb-4">
-          <Link href={actionAddPath} passHref>
-            <a className="btn-outline">
-              <FiPaperclip />
-              <span>Add new</span>
-            </a>
+          <Link href={actionAddPath} passHref className="btn-outline">
+            <FiPaperclip />
+            <span>Add new</span>
           </Link>
         </div>
       )}

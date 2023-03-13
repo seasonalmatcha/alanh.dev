@@ -72,10 +72,12 @@ const AdminProjectsPage: NextPageWithLayout = () => {
                 <span>{project.title}</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Link href={`/admin/projects/edit/${project.id}`} passHref>
-                  <a className="btn-action primary">
-                    <FiEdit />
-                  </a>
+                <Link
+                  href={`/admin/projects/edit/${project.id}`}
+                  passHref
+                  className="btn-action primary"
+                >
+                  <FiEdit />
                 </Link>
                 <button
                   className="btn-action danger"

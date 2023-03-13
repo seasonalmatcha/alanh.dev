@@ -105,10 +105,13 @@ const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ 
       </motion.div>
       <div className="flex flex-wrap mt-8">
         {post.categories.map((category) => (
-          <Link key={category.id} href={`/blog/categories/${category.name}`} passHref>
-            <a className="px-4 py-1 rounded-full border mr-2 hover:border-teal-400">
-              {category.name}
-            </a>
+          <Link
+            key={category.id}
+            href={`/blog/categories/${category.name}`}
+            passHref
+            className="px-4 py-1 rounded-full border mr-2 hover:border-teal-400"
+          >
+            {category.name}
           </Link>
         ))}
       </div>

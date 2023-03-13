@@ -58,12 +58,12 @@ const AdminIndexPage: NextPageWithLayout = () => {
           >
             {collections.map((collection) => (
               <Link key={collection.label} href={`/admin/${collection.path}`} passHref>
-                <motion.a
+                <motion.div
                   variants={stagger.children}
                   className="link-secondary w-full border rounded p-2"
                 >
                   {collection.label}
-                </motion.a>
+                </motion.div>
               </Link>
             ))}
           </motion.div>

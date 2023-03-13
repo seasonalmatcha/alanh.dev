@@ -77,8 +77,8 @@ export const Footer = () => {
                   );
                 }
                 return (
-                  <Link key={label} href={href} passHref>
-                    <a className="footer-link link-secondary">{label}</a>
+                  <Link key={label} href={href} passHref className="footer-link link-secondary">
+                    {label}
                   </Link>
                 );
               })}

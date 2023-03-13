@@ -32,7 +32,7 @@ export const SnippetCard = ({
 
   return (
     <Link href={`/snippets/${slug}`} passHref>
-      <motion.a animate={controls} className="snippet-card group">
+      <motion.div animate={controls} className="snippet-card group">
         <div className="card-body">
           {logo && (
             <div className="snippet-card-logo">
@@ -54,7 +54,7 @@ export const SnippetCard = ({
             </div>
           )}
         </div>
-      </motion.a>
+      </motion.div>
     </Link>
   );
 };
