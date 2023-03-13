@@ -12,13 +12,7 @@ export const ProjectCard = ({ description, href, thumbnail, title }: IProjectCar
       <a href={href} target="_blank" rel="noreferrer" className="project-card-thumbnail link">
         {thumbnail && (
           <div className="project-card-thumbnail-image">
-            <Image
-              alt={title}
-              src={thumbnail}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-            />
+            <Image alt={title} src={thumbnail} fill object-fit="cover" object-position="center" />
           </div>
         )}
         <span className="text-lg">{title}</span>

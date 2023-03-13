@@ -15,7 +15,7 @@ export const BookmarkCard = ({ title, thumbnail, excerpt, url, urlText }: IBookm
         {thumbnail && (
           <div className="w-fit">
             <div className="bookmark-card-thumbnail">
-              <Image src={thumbnail} layout="fill" alt="" />
+              <Image src={thumbnail} fill alt="" />
             </div>
           </div>
         )}

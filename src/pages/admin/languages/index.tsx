@@ -72,7 +72,7 @@ const AdminLanguagesIndexPage: NextPageWithLayout = () => {
               <div className="flex space-x-2 items-center">
                 {language.logo && (
                   <div className="relative w-8 h-8">
-                    <Image src={language.logo} layout="fill" alt="" />
+                    <Image src={language.logo} fill alt="" />
                   </div>
                 )}
                 <span>{language.name}</span>

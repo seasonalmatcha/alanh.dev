@@ -36,7 +36,7 @@ export const SnippetCard = ({
         <div className="card-body">
           {logo && (
             <div className="snippet-card-logo">
-              <Image alt="" aria-hidden src={logo} layout="fill" />
+              <Image alt="" aria-hidden src={logo} fill />
             </div>
           )}
           <h3 className="snippet-card-title">{title}</h3>
@@ -50,7 +50,7 @@ export const SnippetCard = ({
           )}
           {language && language.logo && (
             <div className="snippet-card-language-logo">
-              <Image alt={language.name} src={language.logo} layout="fill" />
+              <Image alt={language.name} src={language.logo} fill />
             </div>
           )}
         </div>
