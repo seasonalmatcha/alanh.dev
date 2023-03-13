@@ -61,7 +61,7 @@ const SnippetDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = 
         <motion.div layoutId={`${snippet.id}`}>
           {snippet.logo && (
             <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4">
-              <Image alt={snippet.title} src={snippet.logo} layout="fill" />
+              <Image alt={snippet.title} src={snippet.logo} fill />
             </div>
           )}
 

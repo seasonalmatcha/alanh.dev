@@ -72,7 +72,7 @@ const PostDetail: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ 
 
       {post.thumbnail && (
         <div className="relative w-full aspect-video overflow-hidden mb-4">
-          <Image alt={post.title} src={post.thumbnail} layout="fill" objectFit="cover" />
+          <Image alt={post.title} src={post.thumbnail} fill object-fit="cover" />
         </div>
       )}
       <motion.div>

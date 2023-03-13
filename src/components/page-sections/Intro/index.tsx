@@ -16,13 +16,7 @@ export const IntroSection = () => {
           }}
           className="intro-section-avatar"
         >
-          <Image
-            alt="alan"
-            src="/static/alan.webp"
-            layout="fill"
-            className="w-full h-full"
-            priority
-          />
+          <Image alt="alan" src="/static/alan.webp" fill className="w-full h-full" priority />
         </motion.div>
       </div>
       <div className="flex flex-col space-y-4">
