@@ -78,10 +78,12 @@ const AdminLanguagesIndexPage: NextPageWithLayout = () => {
                 <span>{language.name}</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Link href={`/admin/languages/edit/${language.id}`} passHref>
-                  <a className="btn-action primary">
-                    <FiEdit />
-                  </a>
+                <Link
+                  href={`/admin/languages/edit/${language.id}`}
+                  passHref
+                  className="btn-action primary"
+                >
+                  <FiEdit />
                 </Link>
                 <button
                   className="btn-action danger"

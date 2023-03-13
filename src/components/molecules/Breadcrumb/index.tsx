@@ -15,10 +15,12 @@ export const Breadcrumb = ({ links, className, ...restProps }: IBreadcrumbProps)
     <nav className={classNames('flex space-x-2', className)} {...restProps}>
       {links.map((link, i) => (
         <Fragment key={link.path}>
-          <Link href={link.path} passHref>
-            <a className={classNames('link-secondary', link.active ? 'active' : '')}>
-              {link.label}
-            </a>
+          <Link
+            href={link.path}
+            passHref
+            className={classNames('link-secondary', link.active ? 'active' : '')}
+          >
+            {link.label}
           </Link>
           {i < links.length - 1 && <span aria-hidden>/</span>}
         </Fragment>

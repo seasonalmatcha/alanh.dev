@@ -68,14 +68,16 @@ const AdminSnippetIndexPage: NextPageWithLayout = () => {
               key={snippet.id}
               className="border rounded p-2 flex justify-between"
             >
-              <Link href={`/snippets/${snippet.slug}`} passHref>
-                <a className="link-secondary w-full">{snippet.title}</a>
+              <Link href={`/snippets/${snippet.slug}`} passHref className="link-secondary w-full">
+                {snippet.title}
               </Link>
               <div className="flex items-center space-x-2">
-                <Link href={`/admin/snippets/edit/${snippet.id}`} passHref>
-                  <a className="btn-action primary">
-                    <FiEdit />
-                  </a>
+                <Link
+                  href={`/admin/snippets/edit/${snippet.id}`}
+                  passHref
+                  className="btn-action primary"
+                >
+                  <FiEdit />
                 </Link>
                 <button
                   className="btn-action danger"

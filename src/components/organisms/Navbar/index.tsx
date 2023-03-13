@@ -83,15 +83,15 @@ export const Navbar = () => {
         <ul className="nav-links">
           {links.map(({ href, label }) => (
             <li key={label}>
-              <Link href={href} passHref>
-                <a
-                  className={classNames(
-                    'link-secondary text-lg',
-                    isCurrentPage(href) ? 'active' : '',
-                  )}
-                >
-                  {label}
-                </a>
+              <Link
+                href={href}
+                passHref
+                className={classNames(
+                  'link-secondary text-lg',
+                  isCurrentPage(href) ? 'active' : '',
+                )}
+              >
+                {label}
               </Link>
             </li>
           ))}
@@ -138,8 +138,8 @@ export const Navbar = () => {
               animationDelay: `${isOpen ? i * 50 + 100 : 200 - i * 50}ms`,
             }}
           >
-            <Link href={href} passHref>
-              <a tabIndex={isOpen ? 0 : -1}>{label}</a>
+            <Link href={href} passHref tabIndex={isOpen ? 0 : -1}>
+              {label}
             </Link>
           </li>
         ))}
