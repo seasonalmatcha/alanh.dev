@@ -23,7 +23,7 @@ export const PostCard = ({ slug, title, excerpt, bounce }: IPostCardProps) => {
   }, [bounce, controls]);
 
   return (
-    <Link href={`/blog/${slug}`} passHref>
+    <Link href={`/blog/${slug}`} passHref className="block">
       <motion.div
         animate={controls}
         className={classNames('group block', bounce ? 'focus:ring-0' : '')}
