@@ -54,7 +54,7 @@ export const IntroSection = () => {
           </div>
 
           <a
-            href="https://drive.google.com/file/d/1psmMRl8uuBzxgAGmqkW4BTAiN6hISNn0/view?usp=sharing"
+            href="https://drive.google.com/file/d/14hYpeNgePVYPWziBAZ89mzs_cgVSnd3U/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
             className="btn-outline w-fit"
