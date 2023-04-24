@@ -43,7 +43,7 @@
     "rss": "^1.2.2",
     "slugify": "^1.6.5",
     "sparkpost": "^2.1.4",
-    "superjson": "^1.12.1",
+    "superjson": "^1.12.3",
     "zod": "^3.20.2"
   },
   "devDependencies": {
