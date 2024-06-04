@@ -4,7 +4,7 @@
 
 body {
   @apply dark:bg-neutral-900 bg-neutral-100;
-  @apply text-slate-600 dark:text-gray-500;
+  @apply text-slate-800 dark:text-gray-200;
 }
 
 a,
