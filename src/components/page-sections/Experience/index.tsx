@@ -14,7 +14,7 @@ export const ExperienceSection = () => {
         <AwaitText text="myExperience" />
       ) : (
         <motion.div variants={variants} initial="hidden" animate="show">
-          <Section title="Experience" subtitle="My journey as a frontend engineer">
+          <Section title="Experience" subtitle="My journey as a fullstack engineer">
             <ul className="experience-list">
               {experiences?.map((experience) => (
                 <InView

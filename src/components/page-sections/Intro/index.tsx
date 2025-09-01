@@ -34,27 +34,28 @@ export const IntroSection = () => {
         >
           <div className="flex flex-col space-y-2 rounded-lg p-4 border">
             <XMLize
-              text="A passionate frontend engineer based in Jakarta, Indonesia"
-              title={<h4>Job</h4>}
-            />
-            <XMLize
-              text="Introvert yet seems extrovert when meeting people online"
-              title={<h4>Personality</h4>}
-            />
-            <XMLize
-              text={[
-                "Can't live without a guitar",
-                'Enjoys roasting, grinding, brewing, and drinking coffee',
-                'Seems like a pro but just casual gamer',
-                'Professional bathroom singer',
-                'Denial about being a weeb even though watches anime all the time',
-              ]}
-              title={<h4>Hobby</h4>}
+              text={
+                <div className="space-y-4">
+                  <p>
+                    Fullstack software engineer with more than 5 years of experience in leading and
+                    developing SaaS, HRIS, and media platforms
+                  </p>
+                  <p>
+                    Specialized in modern frontend frameworks (React, Next.js, Tanstack) and backend
+                    systems (Go, MySQL, AWS)
+                  </p>
+                  <p>
+                    Recognized for leading teams, improving development workflows, and delivering
+                    impactful, production-ready products
+                  </p>
+                </div>
+              }
+              title={<h4>About Me</h4>}
             />
           </div>
 
           <a
-            href="https://drive.google.com/file/d/14hYpeNgePVYPWziBAZ89mzs_cgVSnd3U/view?usp=sharing"
+            href="https://drive.google.com/file/d/1Hx27NPqGpogrB0HV30P3G5KTVMI_-66X/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
             className="btn-outline w-fit"

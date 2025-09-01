@@ -1,5 +1,5 @@
 .experience-list {
-  @apply flex flex-col space-y-4;
+  @apply flex flex-col space-y-12;
 }
 
 .experience-title {
